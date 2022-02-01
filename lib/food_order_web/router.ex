@@ -10,9 +10,9 @@ defmodule FoodOrderWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/", FoodOrderWeb do
     pipe_through :browser
@@ -25,6 +25,7 @@ defmodule FoodOrderWeb.Router do
   #   pipe_through :api
   # end
 
+  # coveralls-ignore-start
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
@@ -53,4 +54,6 @@ defmodule FoodOrderWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  # coveralls-ignore-stop
 end
