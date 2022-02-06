@@ -25,7 +25,15 @@ config :food_order, FoodOrderWeb.Endpoint,
   secret_key_base: "UTazgd9z6pTsn+qw+LtKixzXqeEH0PEEtk2+EKGokeVqzCZHDKMh+9Sm9/KrO5hO",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    npx: [
+      "tailwindcss",
+      "--input=css/app.css",
+      "--output=../priv/static/assets/app.css",
+      "--postcss",
+      "--watch",
+      cd: Path.expand("../assets", __DIR__)
+    ]
   ]
 
 # ## SSL Support
