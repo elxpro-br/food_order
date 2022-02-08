@@ -1,0 +1,57 @@
+<nav class="container mx-auto flex items-center justify-between py-4">
+    <div id="logo">
+        <a href="#"><img src="" alt="">
+            Elxpro
+        </a>
+    </div>
+    <div id="menu">
+        <ul class="flex items-center">
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero py-16">
+    <div class="container mx-auto flex items-center justify-between">
+        <div class="w-1/2" id="hero-info">
+            <h6 class="text-lg" id="hero-info-text"><em>Make your order</em></h6>
+            <h1 class="text-3xl md:text-6xl font-bold">Right now!</h1>
+            <button class="px-6 py-2 rounded-full text-white font-bold mt-5 btn-primary bg-black">Order now</button>
+        </div>
+        <div class="w-1/2" id="hero-info-image">
+            <img src="" alt="">im
+        </div>
+    </div>
+</section>
+
+<div>
+    <section class="menu container mx-auto py-8">
+        <h1 class="text-xl font-bold mb-8">All Foods</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
+
+            <%= for _ <- 0..10 do %>
+            <div class="lg:w-64 shadow-lg rounded-lg p-4 mb-2">
+                <img src="" alt="" class="h-40 mb-4 mx-auto">Img
+
+                <div class="text-center">
+                    <h2 class="mb-4 text-lg">Produto com Nome</h2>
+                    <span class="size py-1 px-4 rounded-full uppercase text-xs">Small</span>
+                    <div class="flex items-center justify-around mt-6">
+                        <span class="font-bold text-lg">$ 10</span>
+                        <button class="add-to-class py-1 px-6 rounded-full flex items-center font-bold">
+                            <span>+</span>
+                            <span class="ml-4">add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+
+        </div>
+    </section>
+</div>
