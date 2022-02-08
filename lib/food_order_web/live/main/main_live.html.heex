@@ -1,7 +1,7 @@
 <nav class="container mx-auto flex items-center justify-between py-4">
     <div id="logo">
-        <a href="#"><img src="" alt="">
-            Elxpro
+        <a href="#">
+            <img src={Routes.static_path(@socket, "/images/logo.png")} alt="" class="h-16 w-16">
         </a>
     </div>
     <div id="menu">
@@ -11,7 +11,12 @@
             <li class="ml-6"><a href="">Menu</a></li>
             <li class="ml-6"><a href="">Menu</a></li>
             <li class="ml-6"><a href="">Menu</a></li>
-            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6" id="shopping-cart">
+                <a href="" class="inline-block px-4 py-2 rounded-full items-center">
+                    <img src={Routes.static_path(@socket, "/images/cart.svg")} alt="" class="h-6 w-6">
+                    <span class="text-black font-bold pr-2 text-xs">10</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -21,10 +26,10 @@
         <div class="w-1/2" id="hero-info">
             <h6 class="text-lg" id="hero-info-text"><em>Make your order</em></h6>
             <h1 class="text-3xl md:text-6xl font-bold">Right now!</h1>
-            <button class="px-6 py-2 rounded-full text-white font-bold mt-5 btn-primary bg-black">Order now</button>
+            <button class="px-6 py-2 rounded-full text-white font-bold mt-5 btn-primary bg-yellow-600">Order now</button>
         </div>
         <div class="w-1/2" id="hero-info-image">
-            <img src="" alt="">im
+            <img src={Routes.static_path(@socket, "/images/hero.svg")} alt="">
         </div>
     </div>
 </section>
@@ -36,7 +41,7 @@
 
             <%= for _ <- 0..10 do %>
             <div class="lg:w-64 shadow-lg rounded-lg p-4 mb-2">
-                <img src="" alt="" class="h-40 mb-4 mx-auto">Img
+                <img src={Routes.static_path(@socket, "/images/food.svg")} alt="" class="h-40 mb-4 mx-auto">
 
                 <div class="text-center">
                     <h2 class="mb-4 text-lg">Produto com Nome</h2>
