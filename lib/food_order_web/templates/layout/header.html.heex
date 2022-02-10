@@ -1,0 +1,22 @@
+<nav class="container mx-auto flex items-center justify-between py-4">
+    <div id="logo">
+        <a href="#">
+            <img src={Routes.static_path(@conn, "/images/logo.png" )} alt="" class="h-16 w-16">
+        </a>
+    </div>
+    <div id="menu">
+        <ul class="flex items-center">
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6"><a href="">Menu</a></li>
+            <li class="ml-6" id="shopping-cart">
+                <a href="" class="inline-block px-4 py-2 rounded-full items-center text-white">
+                    <span class="font-bold pr-2 text-xs">10</span>
+                    <img src={Routes.static_path(@conn, "/images/cart.svg" )} alt="" class="h-6 w-6">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
