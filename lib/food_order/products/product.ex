@@ -26,5 +26,4 @@ defmodule FoodOrder.Products.Product do
     |> validate_required(@required_fiels)
     |> unique_constraint(:name, name: :products_name_index)
   end
-
 end

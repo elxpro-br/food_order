@@ -7,6 +7,6 @@ defmodule FoodOrder.Products do
   def create_product(attrs \\ %{}) do
     attrs
     |> Product.changeset()
-    |> Repo.insert
+    |> Repo.insert()
   end
 end
