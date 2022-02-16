@@ -4,8 +4,7 @@
         "lib/food_order_web.ex",
         "lib/food_order_web/telemetry.ex",
         "lib/food_order_web/views/error_helpers.ex",
-        "test/support/channel_case.ex",
-        "test/support/data_case.ex"
+        "test/support/*"
     ],
     "coverage_options": {
         "treat_no_relevant_lines_as_covered": true,
