@@ -1,5 +1,5 @@
 <div>
-    <.form let={f} for={@changeset} id={@id}>
+    <.form let={f} for={@changeset} id={@id} phx-change="validate" phx-target={@myself}>
         <%= IO.inspect f %>
         <div class="mb-4">
             <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2"  %>
@@ -14,13 +14,13 @@
 
         <div class="mb-4">
             <%= label f, :price, class: "block text-gray-700 text-sm font-bold mb-2"  %>
-            <%= text_input f, :price,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Digite o nome do Produto" %>
+            <%= text_input f, :price,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             <%= error_tag f, :price %>
         </div>
 
         <div class="mb-4">
             <%= label f, :size, class: "block text-gray-700 text-sm font-bold mb-2"  %>
-            <%= text_input f, :size,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Digite o nome do Produto" %>
+            <%= text_input f, :size,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             <%= error_tag f, :size %>
         </div>
 
