@@ -1,20 +1,13 @@
 defmodule FoodOrderWeb.LiveHelpers do
-  use FoodOrderWeb, :live_component
-  # import Phoenix.LiveView
+  import Phoenix.LiveView
   import Phoenix.LiveView.Helpers
 
-  def render(assigns) do
+  def modal(assigns) do
     ~H"""
-    <div class="phx-modal fade-in">
-    <div class="phx-modal-content fade-in-scale">
-        <form action="">
-            <input type="text" placeholder="name">
-            <input type="text" placeholder="description">
-            <input type="text" placeholder="price">
-            <input type="text" placeholder="size">
-            <button type="submit">Criar Producto</button>
-        </form>
-    </div>
+    <div class="phx-modal fade-in shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="phx-modal-content fade-in-scale">
+        <%= render_slot(@inner_block) %>
+      </div>
     </div>
     """
   end
