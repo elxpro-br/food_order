@@ -11,6 +11,8 @@ config :food_order,
   ecto_repos: [FoodOrder.Repo],
   generators: [binary_id: true]
 
+config :money, default_currency: :BRL
+
 # Configures the endpoint
 config :food_order, FoodOrderWeb.Endpoint,
   url: [host: "localhost"],
