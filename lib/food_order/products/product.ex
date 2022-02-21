@@ -10,7 +10,7 @@ defmodule FoodOrder.Products.Product do
   schema "products" do
     field :name, :string
     field :description, :string
-    field :price, :integer
+    field :price, Money.Ecto.Amount.Type
     field :size, :string
 
     timestamps()

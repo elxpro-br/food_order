@@ -14,7 +14,7 @@ defmodule FoodOrder.ProductsTest do
 
     assert product.description == payload.description
     assert product.name == payload.name
-    assert product.price == payload.price
+    assert product.price == %Money{amount: 100, currency: :BRL}
     assert product.size == payload.size
   end
 

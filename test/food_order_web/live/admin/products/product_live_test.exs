@@ -19,11 +19,11 @@ defmodule FoodOrderWeb.Admin.ProductLiveTest do
     assert has_element?(view, "[data-role=product-item][data-id=#{product.id}]")
     assert has_element?(view, "[data-role=product-name][data-id=#{product.id}]", product.name)
 
-    assert has_element?(
+    assert element(
              view,
-             "[data-role=product-price][data-id=#{product.id}]",
-             Integer.to_string(product.price)
+             "[data-role=product-price][data-id=#{product.id}]"
            )
+           |> render =~ "R$2.00"
 
     assert has_element?(view, "[data-role=product-size][data-id=#{product.id}]", product.size)
 
