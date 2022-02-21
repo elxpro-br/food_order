@@ -1,6 +1,5 @@
 <div>
-    <.form let={f} for={@changeset} id={@id} phx-change="validate" phx-target={@myself}>
-        <%= IO.inspect f %>
+    <.form let={f} for={@changeset} id={@id} phx-change="validate" phx-target={@myself} data-role="product-form">
         <div class="mb-4">
             <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2"  %>
             <%= text_input f, :name,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Digite o nome do Produto" %>
