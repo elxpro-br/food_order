@@ -3,19 +3,23 @@
         <div class="w-full overflow-x-auto">
             <table class="w-full" data-role="product-table">
                 <thead>
-                    <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                    <tr
+                        class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                         <th class="px-4 py-3" data-id="head-name">Name</th>
                         <th class="px-4 py-3" data-id="head-price">Price</th>
-                        <th class="px-4 py-3"data-id="head-size">Size</th>
+                        <th class="px-4 py-3" data-id="head-size">Size</th>
                         <th class="px-4 py-3" data-id="head-actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white" data-role="product-list">
                     <%= for product <- @products do %>
                     <tr class="text-gray-700" data-role="product-item" data-id={product.id}>
-                        <td class="px-4 py-3 border" data-role="product-name" data-id={product.id}><%= product.name %></td>
-                        <td class="px-4 py-3 border" data-role="product-price" data-id={product.id}><%= product.price %></td>
-                        <td class="px-4 py-3 border" data-role="product-size" data-id={product.id}><%= product.size %></td>
+                        <td class="px-4 py-3 border" data-role="product-name" data-id={product.id}><%= product.name %>
+                        </td>
+                        <td class="px-4 py-3 border" data-role="product-price" data-id={product.id}><%= product.price %>
+                        </td>
+                        <td class="px-4 py-3 border" data-role="product-size" data-id={product.id}><%= product.size %>
+                        </td>
                         <td class="px-4 py-3 border" data-role="product-action" data-id={product.id}>Show | Edit | Delete</td>
                     </tr>
                     <% end %>
@@ -24,3 +28,8 @@
         </div>
     </div>
 </section>
+
+
+<.modal>
+    <.live_component module={Form} id="new_product" />
+</.modal>
