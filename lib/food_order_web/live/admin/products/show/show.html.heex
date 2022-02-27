@@ -1,0 +1,17 @@
+<ul>
+    <li data-role="name">
+        <strong>Name:</strong>
+        <%= @product.name %>
+    </li>
+    <li data-role="description">
+        <strong>Description:</strong>
+        <%= @product.description %>
+    </li>
+    <li data-role="price">
+        <strong>Price:</strong><%= @product.price %>
+    </li>
+    <li data-role="size">
+        <strong>Size:</strong><%= @product.size %>
+    </li>
+</ul>
+<%= link "back", to: Routes.admin_product_path(@socket, :index) %>
