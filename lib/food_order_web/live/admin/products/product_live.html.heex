@@ -26,7 +26,7 @@
                         <td class="px-4 py-3 border" data-role="product-action" data-id={product.id}>
                             Show |
                             <%= live_patch "Edit", to: Routes.admin_product_path(@socket, :edit, product), "data-role": "edit-product", "data-id": product.id, class: "px-3 py-1 rounded-full text-white font-bold btn-primary" %> |
-                            Delete
+                            <%= link "Delete", to: "#", phx_click: "delete", phx_value_id: product.id, data: [confirm: "Tem certeza?"], class: "px-3 py-1 rounded-full text-white font-bold text-white bg-red-500", "data-role": "delete", "data-id": product.id %>
                         </td>
                     </tr>
                     <% end %>

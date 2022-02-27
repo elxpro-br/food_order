@@ -17,5 +17,11 @@ defmodule FoodOrder.Products do
     |> Repo.update()
   end
 
+  def delete(id) do
+    id
+    |> get!()
+    |> Repo.delete()
+  end
+
   def change_product(product, params \\ %{}), do: Product.changeset(product, params)
 end

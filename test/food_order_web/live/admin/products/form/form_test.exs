@@ -4,7 +4,21 @@ defmodule FoodOrderWeb.Admin.Products.FormTest do
   alias FoodOrder.Products
   import FoodOrder.Factory
 
-  test "given a product that has already exist when click to edit then open the modal e executa an action",
+  test "given a product that has already exist when try to update without informations return an error",
+       %{conn: conn} do
+    product = insert(:product)
+
+    {:ok, view, _html} = live(conn, Routes.admin_product_path(conn, :index))
+
+    assert view |> element("[data-role=edit-product][data-id=#{product.id}]") |> render_click()
+    assert_patch(view, Routes.admin_product_path(conn, :edit, product))
+
+    assert view
+           |> form("##{product.id}", product: %{name: nil})
+           |> render_submit() =~ "can&#39;t be blank"
+  end
+
+  test "given a product that has already exist when click to edit then open the modal and execute an action",
        %{conn: conn} do
     product = insert(:product)
 
