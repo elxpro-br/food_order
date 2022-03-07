@@ -78,15 +78,15 @@ defmodule FoodOrderWeb.UserResetPasswordControllerTest do
       conn =
         put(conn, Routes.user_reset_password_path(conn, :update, token), %{
           "user" => %{
-            "password" => "new valid password",
-            "password_confirmation" => "new valid password"
+            "password" => "New_ValidPassword@123",
+            "password_confirmation" => "New_ValidPassword@123"
           }
         })
 
       assert redirected_to(conn) == Routes.user_session_path(conn, :new)
       refute get_session(conn, :user_token)
       assert get_flash(conn, :info) =~ "Password reset successfully"
-      assert Accounts.get_user_by_email_and_password(user.email, "new valid password")
+      assert Accounts.get_user_by_email_and_password(user.email, "New_ValidPassword@123")
     end
 
     test "does not reset password on invalid data", %{conn: conn, token: token} do

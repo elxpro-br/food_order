@@ -22,7 +22,7 @@ defmodule FoodOrder.AccountsTest do
       refute Accounts.get_user_by_email_and_password("unknown@example.com", "hello world!")
     end
 
-    test "does not return the user if the password is not valid" do
+    test "does not return the user if the password is Not_valid" do
       user = user_fixture()
       refute Accounts.get_user_by_email_and_password(user.email, "invalid")
     end
@@ -59,7 +59,7 @@ defmodule FoodOrder.AccountsTest do
     end
 
     test "validates email and password when given" do
-      {:error, changeset} = Accounts.register_user(%{email: "not valid", password: "not valid"})
+      {:error, changeset} = Accounts.register_user(%{email: "Not_valid", password: "Not_valid"})
 
       assert %{
                email: ["must have the @ sign and no spaces"],
@@ -136,7 +136,7 @@ defmodule FoodOrder.AccountsTest do
 
     test "validates email", %{user: user} do
       {:error, changeset} =
-        Accounts.apply_user_email(user, valid_user_password(), %{email: "not valid"})
+        Accounts.apply_user_email(user, valid_user_password(), %{email: "Not_valid"})
 
       assert %{email: ["must have the @ sign and no spaces"]} = errors_on(changeset)
     end
@@ -245,11 +245,11 @@ defmodule FoodOrder.AccountsTest do
     test "allows fields to be set" do
       changeset =
         Accounts.change_user_password(%User{}, %{
-          "password" => "new valid password"
+          "password" => "N_ew valid password"
         })
 
       assert changeset.valid?
-      assert get_change(changeset, :password) == "new valid password"
+      assert get_change(changeset, :password) == "N_ew valid password"
       assert is_nil(get_change(changeset, :hashed_password))
     end
   end
@@ -262,7 +262,7 @@ defmodule FoodOrder.AccountsTest do
     test "validates password", %{user: user} do
       {:error, changeset} =
         Accounts.update_user_password(user, valid_user_password(), %{
-          password: "not valid",
+          password: "Not_valid",
           password_confirmation: "another"
         })
 
@@ -291,11 +291,11 @@ defmodule FoodOrder.AccountsTest do
     test "updates the password", %{user: user} do
       {:ok, user} =
         Accounts.update_user_password(user, valid_user_password(), %{
-          password: "new valid password"
+          password: "new_Valid_password"
         })
 
       assert is_nil(user.password)
-      assert Accounts.get_user_by_email_and_password(user.email, "new valid password")
+      assert Accounts.get_user_by_email_and_password(user.email, "new_Valid_password")
     end
 
     test "deletes all tokens for the given user", %{user: user} do
@@ -303,7 +303,7 @@ defmodule FoodOrder.AccountsTest do
 
       {:ok, _} =
         Accounts.update_user_password(user, valid_user_password(), %{
-          password: "new valid password"
+          password: "N_ew valid password"
         })
 
       refute Repo.get_by(UserToken, user_id: user.id)
@@ -471,7 +471,7 @@ defmodule FoodOrder.AccountsTest do
     test "validates password", %{user: user} do
       {:error, changeset} =
         Accounts.reset_user_password(user, %{
-          password: "not valid",
+          password: "Not_valid",
           password_confirmation: "another"
         })
 
@@ -488,14 +488,14 @@ defmodule FoodOrder.AccountsTest do
     end
 
     test "updates the password", %{user: user} do
-      {:ok, updated_user} = Accounts.reset_user_password(user, %{password: "new valid password"})
+      {:ok, updated_user} = Accounts.reset_user_password(user, %{password: "N_ew valid password"})
       assert is_nil(updated_user.password)
-      assert Accounts.get_user_by_email_and_password(user.email, "new valid password")
+      assert Accounts.get_user_by_email_and_password(user.email, "N_ew valid password")
     end
 
     test "deletes all tokens for the given user", %{user: user} do
       _ = Accounts.generate_user_session_token(user)
-      {:ok, _} = Accounts.reset_user_password(user, %{password: "new valid password"})
+      {:ok, _} = Accounts.reset_user_password(user, %{password: "N_ew valid password"})
       refute Repo.get_by(UserToken, user_id: user.id)
     end
   end

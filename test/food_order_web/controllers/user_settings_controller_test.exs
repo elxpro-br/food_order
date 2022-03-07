@@ -27,15 +27,15 @@ defmodule FoodOrderWeb.UserSettingsControllerTest do
           "action" => "update_password",
           "current_password" => valid_user_password(),
           "user" => %{
-            "password" => "new valid password",
-            "password_confirmation" => "new valid password"
+            "password" => "New_ValidPassword123@",
+            "password_confirmation" => "New_ValidPassword123@"
           }
         })
 
       assert redirected_to(new_password_conn) == Routes.user_settings_path(conn, :edit)
       assert get_session(new_password_conn, :user_token) != get_session(conn, :user_token)
       assert get_flash(new_password_conn, :info) =~ "Password updated successfully"
-      assert Accounts.get_user_by_email_and_password(user.email, "new valid password")
+      assert Accounts.get_user_by_email_and_password(user.email, "New_ValidPassword123@")
     end
 
     test "does not update password on invalid data", %{conn: conn} do
