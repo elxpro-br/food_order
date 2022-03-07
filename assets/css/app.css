@@ -63,6 +63,20 @@ section.hero{
   background-color: var(--primary-hover) !important;
 }
 
+section.login{
+  background: var(--pure);
+  min-height: calc(100vh - 86px);
+}
+
+section.login a {
+  color: var(--primary);
+  transition: var(--smooth);
+}
+
+section.login a:hover{
+  color: var(--primary-hover)
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
