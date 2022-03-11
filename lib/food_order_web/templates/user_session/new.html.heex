@@ -1,0 +1,36 @@
+<section class="login flex justify-center pt-4">
+
+
+  <div class="w-full mx-w-xs">
+  <h1>Log in</h1>
+    <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <%= if @error_message do %>
+      <div class="alert alert-danger">
+        <p><%= @error_message %></p>
+      </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= label f, :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= email_input f, :email, required: true, placeholder: "E-mail", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <%= label f, :password, class: "block text-gray-700 text-sm font-bold mb-2"  %>
+      <%= password_input f, :password, required: true, placeholder: "******", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+      <%= label f, :remember_me, "Keep me logged in for 60 days", class: "mt-8 block text-gray-700 text-sm font-bold mb-2" %>
+      <%= checkbox f, :remember_me %>
+
+      <div class="flex itemgs-center justify-between">
+        <%= submit "Log in", class: "btn-primary rounded-full text-sm text-white font-bold py-2 px-4 rounded foducs:outline-none focus:shadow-outline" %>
+        <%= link "Create Account", to: Routes.user_registration_path(@conn, :new), class: "inline-block align-baseline font-bold text-sm" %>
+      </div>
+    </.form>
+
+    <p>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+    </p>
+  </div>
+
+</section>
