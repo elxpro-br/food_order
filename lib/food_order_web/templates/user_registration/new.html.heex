@@ -1,26 +1,36 @@
-<h1>Register</h1>
+<section class="login flex justify-center pt-4">
+  <div class="w-full mx-w-xs">
 
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+    <h1>Register</h1>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+    <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+      <% end %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+      <div class="mb-4">
+        <%= label f, :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= email_input f, :email, required: true, placeholder: "Digite seu melhor e-mail", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= error_tag f, :email %>
+      </div>
 
-  <div>
-    <%= submit "Register" %>
+      <div class="mb-4">
+        <%= label f, :password, class: "block text-gray-700 text-sm font-bold mb-2"  %>
+        <%= password_input f, :password, required: true, placeholder: "******", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="flex itemgs-center justify-between">
+        <%= submit "Register", class: "btn-primary rounded-full text-sm text-white font-bold py-2 px-4 rounded foducs:outline-none focus:shadow-outline" %>
+      </div>
+    </.form>
+
+    <p>
+      <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+    </p>
   </div>
-</.form>
-
-<p>
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+</section>
