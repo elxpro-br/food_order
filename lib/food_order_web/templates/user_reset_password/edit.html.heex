@@ -1,26 +1,40 @@
-<h1>Reset password</h1>
+<section class="login flex justify-center pt-4">
 
-<.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
 
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
+  <div class="w-full mx-w-xs">
+    <h1>Reset password</h1>
 
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
+    <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
+      <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+      <% end %>
 
-  <div>
-    <%= submit "Reset password" %>
+
+      <div class="mb-4">
+        <%= label f, :password, "New password", class: "block text-gray-700 text-sm font-bold mb-2"  %>
+        <%= password_input f, :password, required: true, placeholder: "******", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <div class="mb-4">
+        <%= label f, :password_confirmation, "Confirm new password", class: "block text-gray-700 text-sm font-bold mb-2"  %>
+        <%= password_input f, :password_confirmation, required: true, placeholder: "******", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= error_tag f, :password_confirmation %>
+      </div>
+
+      <div class="flex itemgs-center justify-between">
+        <%= submit "Reset password", class: "btn-primary rounded-full text-sm text-white font-bold py-2 px-4 rounded foducs:outline-none focus:shadow-outline" %>
+      </div>
+
+    </.form>
+
+    <p>
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+      <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
+    </p>
+
   </div>
-</.form>
 
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+</section>
