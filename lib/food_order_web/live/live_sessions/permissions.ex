@@ -12,14 +12,16 @@ defmodule LiveSessions.Permissions do
   end
 
   defp assign_user(socket, :admin, user_token) do
-    current_user = Accounts.get_user_by_session_token(user_token)
-
-    if current_user.role != :ADMIN do
-      error_login(socket, "You don`t have permissions to access this page")
-    else
-      {:cont, assign_new(socket, :current_user, fn -> current_user end)}
-    end
+    user_token
+    |> Accounts.get_user_by_session_token()
+    |> return_socket(socket)
   end
+
+  defp return_socket(%{role: role}, socket) when role != :ADMIN,
+    do: error_login(socket, "You don`t have permissions to access this page")
+
+  defp return_socket(current_user, socket),
+    do: {:cont, assign_new(socket, :current_user, fn -> current_user end)}
 
   defp error_login(socket, message) do
     socket =
