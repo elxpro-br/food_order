@@ -46,6 +46,11 @@ defmodule FoodOrderWeb.ConnCase do
   It stores an updated connection and a registered user in the
   test context.
   """
+  def register_and_log_in_admin(%{conn: conn}) do
+    user = FoodOrder.AccountsFixtures.admin_fixture()
+    %{conn: log_in_user(conn, user), user: user}
+  end
+
   def register_and_log_in_user(%{conn: conn}) do
     user = FoodOrder.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
