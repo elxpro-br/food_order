@@ -5,7 +5,7 @@ defmodule FoodOrderWeb.Admin.Products.FormTest do
   import FoodOrder.Factory
 
   describe "test product form" do
-    setup :register_and_log_in_user
+    setup :register_and_log_in_admin
 
     test "given a product that has already exist when try to update without informations return an error",
          %{conn: conn} do
