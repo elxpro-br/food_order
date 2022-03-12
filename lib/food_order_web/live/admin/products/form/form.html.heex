@@ -1,5 +1,6 @@
 <div>
-    <.form let={f} for={@changeset} id={@id} phx-change="validate" phx-submit="save" phx-target={@myself} data-role="product-form">
+    <.form let={f} for={@changeset} id={@id} phx-change="validate" phx-submit="save" phx-target={@myself}
+        data-role="product-form">
         <div class="mb-4">
             <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2"  %>
             <%= text_input f, :name,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Digite o nome do Produto" %>
@@ -22,6 +23,46 @@
             <%= text_input f, :size,  class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             <%= error_tag f, :size %>
         </div>
+
+        <div class="upload-photos">
+            <div class="upload-info">
+                Add up to <%= @uploads.photo.max_entries %> photos
+                (max <%= trunc(@uploads.photo.max_file_size / 1_000_000) %> mb each)
+            </div>
+
+            <%= live_file_input @uploads.photo %>
+
+            <%= for {_ref, err_msg} <- @uploads.photo.errors do %>
+            <div class="errors">
+                <%= humanize(err_msg) %>
+            </div>
+            <% end %>
+
+            <%= for entry <- @uploads.photo.entries do %>
+            <div class="photo-property">
+                <div class="img-preview">
+                    <%=  live_img_preview entry, width: 75 %>
+                </div>
+
+                <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                    <div class="bg-yellow-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                        style={"width: " <> Integer.to_string(entry.progress) <> " %"}> <%= entry.progress  %>%</div>
+                </div>
+
+                <div class="cancel">
+                    <button type="button" phx-click="cancel" phx-target={@myself}
+                        phx-value-ref={entry.ref}>&times;</button>
+                </div>
+
+                <%= for err_msg <- upload_errors(@uploads.photo, entry) do %>
+                <div class="errors">
+                    <%= humanize(err_msg) %>
+                </div>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+
 
         <div class="flex items-center">
             <%= submit "Criar Produto", phx_disable_with: "Criando...", class: "btn-primary rounded-full text-sm text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
