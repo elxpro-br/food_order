@@ -2,8 +2,7 @@ defmodule FoodOrderWeb.Admin.Products.Form do
   use FoodOrderWeb, :live_component
   alias FoodOrder.Products
 
-  @upload_configs [accept: ~w/.png .jpeg .jpg/, max_entries: 2, max_file_size: 1]
-  # @upload_configs [accept: ~w/.png .jpeg .jpg/, max_entries: 2, max_file_size: 10_000_000]
+  @upload_configs [accept: ~w/.png .jpeg .jpg/, max_entries: 1, max_file_size: 10_000_000]
 
   def update(%{product: product} = assigns, socket) do
     changeset = Products.change_product(product)
