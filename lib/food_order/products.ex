@@ -1,5 +1,6 @@
 defmodule FoodOrder.Products do
   alias FoodOrder.Products.Product
+  alias FoodOrder.Products.ProductImage
   alias FoodOrder.Repo
 
   def list_products, do: Repo.all(Product)
@@ -24,4 +25,8 @@ defmodule FoodOrder.Products do
   end
 
   def change_product(product, params \\ %{}), do: Product.changeset(product, params)
+
+  def get_image(product) do
+    ProductImage.url({product.product_url, product})
+  end
 end
