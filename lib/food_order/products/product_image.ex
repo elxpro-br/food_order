@@ -2,6 +2,7 @@ defmodule FoodOrder.Products.ProductImage do
   use Waffle.Definition
   use Waffle.Ecto.Definition
 
+  @versions [:final]
   @extension_whitelist ~w(.png .jpeg .jpg)
 
   def validate({file, _}) do
@@ -14,6 +15,6 @@ defmodule FoodOrder.Products.ProductImage do
   end
 
   def storage_dir(_, {_file, product}) do
-    "/priv/static/uploads/products/#{product.name}"
+    "/priv/static/uploads/#{product.name}"
   end
 end
