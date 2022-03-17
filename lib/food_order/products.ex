@@ -27,6 +27,6 @@ defmodule FoodOrder.Products do
   def change_product(product, params \\ %{}), do: Product.changeset(product, params)
 
   def get_image(product) do
-    ProductImage.url({product.product_url, product})
+    ProductImage.url({product.product_url, product}, :final)
   end
 end

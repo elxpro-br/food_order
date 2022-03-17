@@ -24,7 +24,7 @@
             <%= error_tag f, :size %>
         </div>
 
-        <div class="upload-photos">
+        <div class="upload-photos" phx-drop-target={@uploads.photo.ref}>
             <div class="rounted-lg shadow-xl bg-gray-50">
                 <div class="mb-4">
                     <label class="inline-block mb-2 text-red-500">
@@ -46,7 +46,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                                 <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                    Select a photo
+                                    Select a photo / drag photo
                                 </p>
                                 <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                     Add up to <%= @uploads.photo.max_entries %> photos
