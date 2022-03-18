@@ -29,6 +29,46 @@ defmodule FoodOrder.ProductsTest do
     assert product.name == payload.name
     assert product.price == %Money{amount: 100, currency: :BRL}
     assert product.size == payload.size
+    assert "" == Products.get_image(product)
+  end
+
+  test "create product with image and get the image url" do
+    file_upload = %Plug.Upload{
+      content_type: "image/png",
+      filename: "photo.png",
+      path: "test/support/fixtures/photo.png"
+    }
+
+    payload = %{
+      name: "pizza",
+      size: "small",
+      price: 100,
+      description: "abobora",
+      product_url: file_upload
+    }
+
+    assert {:ok, %Product{} = product} = Products.create_product(payload)
+    [url | _] = Products.get_image(product)
+    assert String.contains?(url, file_upload.filename)
+  end
+
+  test "create product with invalid image type" do
+    file_upload = %Plug.Upload{
+      content_type: "image/svg",
+      filename: "photo.svg",
+      path: "test/support/fixtures/photo.svg"
+    }
+
+    payload = %{
+      name: "pizza",
+      size: "small",
+      price: 100,
+      description: "abobora",
+      product_url: file_upload
+    }
+
+    assert {:error, changeset} = Products.create_product(payload)
+    assert "file type is invalid" in errors_on(changeset).product_url
   end
 
   test "update product" do
