@@ -24,7 +24,7 @@
             <%= error_tag f, :size %>
         </div>
 
-        <div class="upload-photos">
+        <div class="upload-photos" phx-drop-target={@uploads.photo.ref}>
             <div class="rounted-lg shadow-xl bg-gray-50">
                 <div class="mb-4">
                     <label class="inline-block mb-2 text-red-500">
@@ -46,7 +46,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                                 <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                    Select a photo
+                                    Select a photo / drop photo
                                 </p>
                                 <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                     Add up to <%= @uploads.photo.max_entries %> photos
@@ -66,7 +66,8 @@
                     <%=  live_img_preview entry, width: 75 %>
                 </div>
 
-                <button type="button" phx-click="cancel" phx-target={@myself} phx-value-ref={entry.ref} data-role="cancel" data-id={entry.ref}>&times;</button>
+                <button type="button" phx-click="cancel" phx-target={@myself} phx-value-ref={entry.ref}
+                    data-role="cancel" data-id={entry.ref}>&times;</button>
 
                 <%= for err_msg <- upload_errors(@uploads.photo, entry) do %>
                 <div class="text-red-500">
@@ -76,7 +77,8 @@
             </div>
 
             <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                <div class="bg-yellow-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" data-role="image-loaded" data-id={entry.ref}
+                <div class="bg-yellow-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                    data-role="image-loaded" data-id={entry.ref}
                     style={"width: " <> Integer.to_string(entry.progress) <> "%"}> <%= entry.progress  %>%</div>
             </div>
             <% end %>

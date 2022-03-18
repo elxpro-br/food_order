@@ -18,7 +18,7 @@
                     <%= for product <- @products do %>
                     <tr class="text-gray-700" data-role="product-item" data-id={product.id}>
                         <td class="px-4 py-3 border" data-role="product-image" data-id={product.id}>
-                            <img src={Products.get_image(product)} alt="">
+                            <img src={Products.get_image(product)} alt="" style="width: 50px;">
                         </td>
                         <td class="px-4 py-3 border" data-role="product-name" data-id={product.id}><%= product.name %>
                         </td>
