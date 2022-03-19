@@ -28,14 +28,18 @@ defmodule FoodOrder.Products do
 
   def get_image(product) do
     {product.product_url, product}
-    |> ProductImage.url()
+    |> ProductImage.url(:final, signed: true)
     |> get_image_url()
   end
 
   defp get_image_url(nil), do: ""
 
   defp get_image_url(url) do
-    [_ | url] = String.split(url, "/priv/static")
-    url
+    if Mix.env() == :prod do
+      url
+    else
+      [_ | url] = String.split(url, "/priv/static")
+      url
+    end
   end
 end
