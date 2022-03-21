@@ -26,7 +26,7 @@ defmodule FoodOrderWeb.Admin.ProductLiveTest do
                view,
                "[data-role=product-price][data-id=#{product.id}]"
              )
-             |> render =~ "R$2.00"
+             |> render =~ Money.to_string(product.price)
 
       assert has_element?(view, "[data-role=product-size][data-id=#{product.id}]", product.size)
 
