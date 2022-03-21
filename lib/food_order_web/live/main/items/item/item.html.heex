@@ -1,11 +1,11 @@
 <div class="lg:w-64 shadow-lg rounded-lg p-4 mb-2" id={@id}>
-    <img src={Routes.static_path(@socket, "/images/food.svg" )} alt="" class="h-40 mb-4 mx-auto" data-role="product-img" data-id={@id}>
+    <img src={Products.get_image(@product)} alt="" class="h-40 mb-4 mx-auto" data-role="product-img" data-id={@id}>
 
     <div class="text-center" data-role="product-description">
-        <h2 class="mb-4 text-lg" data-role="product-name" data-id={@id}>Produto com Nome</h2>
-        <span class="size py-1 px-4 rounded-full uppercase text-xs">Small</span>
+        <h2 class="mb-4 text-lg" data-role="product-name" data-id={@id}><%= @product.name %> </h2>
+        <span class="size py-1 px-4 rounded-full uppercase text-xs"><%= @product.size %> </span>
         <div class="flex items-center justify-around mt-6">
-            <span class="font-bold text-lg" data-role="product-price" data-id={@id}>$ 10</span>
+            <span class="font-bold text-lg" data-role="product-price" data-id={@id}><%= @product.price %> </span>
             <button class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold" data-role="product-add" data-id={@id}>
                 <span data->+</span>
                 <span class="ml-4">add</span>

@@ -13,7 +13,9 @@ Accounts.register_user(%{
   role: "USER"
 })
 
-{:ok, product} =
+Enum.each(1..200, fn _ ->
+  image = :rand.uniform(4)
+
   %{
     name: Faker.Food.dish(),
     description: Faker.Food.description(),
@@ -21,8 +23,9 @@ Accounts.register_user(%{
     size: "small",
     product_url: %Plug.Upload{
       content_type: "image/png",
-      filename: "logo.png",
-      path: "priv/static/images/logo.png"
+      filename: "product_#{image}.jpg",
+      path: "priv/static/images/product_#{image}.jpg"
     }
   }
   |> Products.create_product()
+end)
