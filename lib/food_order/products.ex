@@ -2,6 +2,15 @@ defmodule FoodOrder.Products do
   alias FoodOrder.Products.Product
   alias FoodOrder.Products.ProductImage
   alias FoodOrder.Repo
+  import Ecto.Query
+
+  def list_products(name) do
+    name = "%" <> name <> "%"
+
+    Product
+    |> where([p], ilike(p.name, ^name))
+    |> Repo.all()
+  end
 
   def list_products, do: Repo.all(Product)
   def get!(id), do: Repo.get!(Product, id)

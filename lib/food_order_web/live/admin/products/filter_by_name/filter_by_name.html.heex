@@ -1,0 +1,16 @@
+<form phx-submit="filter-by-name" id={@id}>
+    <div class="relative">
+        <span class="absolute inset-y-0 pl-2 left-0 flex items-center">
+            <img src={Routes.static_path(@socket, "/images/search.svg")} alt="filter by name" class="h-6 w-6 text-gray-500">
+        </span>
+
+        <input type="text"
+            autofocus
+            autocomplete="off"
+            name="name"
+            value={@name}
+            placeholder="Search by product name"
+            class="pl-10 pr-4 py-4 text-gray-900 text-sm leading-tight border-gray-400 placeholder-gray-600 rounded-md border"
+            >
+    </div>
+</form>
