@@ -22,8 +22,12 @@
                     <tr
                         class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
                         <th class="px-4 py-3" data-id="head-image">Image</th>
-                        <th class="px-4 py-3" data-id="head-name">Name</th>
-                        <th class="px-4 py-3" data-id="head-price">Price</th>
+                        <th class="px-4 py-3" data-id="head-name">
+                            <.live_component module={Sort} id="sort-by-name" sort_by={:name} options={%{sort_by: :name, sort_order: :asc}} />
+                        </th>
+                        <th class="px-4 py-3" data-id="head-price">
+                            <.live_component module={Sort} id="sort-by-price" sort_by={:price} options={%{sort_by: :name, sort_order: :desc}} />
+                        </th>
                         <th class="px-4 py-3" data-id="head-size">Size</th>
                         <th class="px-4 py-3" data-id="head-actions">
                             Actions

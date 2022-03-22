@@ -5,6 +5,7 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   alias FoodOrderWeb.Admin.Product.FilterByName
   alias FoodOrderWeb.Admin.Product.ProductRow
   alias FoodOrderWeb.Admin.Products.Form
+  alias FoodOrderWeb.Admin.Product.Sort
 
   @impl true
   def mount(_p, _s, socket) do
