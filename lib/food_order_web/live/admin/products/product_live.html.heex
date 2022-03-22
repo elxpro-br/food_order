@@ -1,6 +1,19 @@
 <header class="flex justify-between py-3 mx-auto p-6 items-center border-b border-gray-200">
     <.live_component module={FilterByName} id="filter-by-name" name={@name} />
 </header>
+
+<%= if @loading do %>
+<div class="py-3 flex justify-center">
+    <div
+        class="animate-bounce bg-white dark:bg-gray-800 p-2 w-10 h-10 ring-1 ring-gray-900/5 dark:ring-gray-200/20 shadow-lg rounded-full flex items-center justify-center">
+        <svg class="w-6 h-6 text-violet-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</div>
+<% end %>
+
 <section class="container mx-auto p-6 font-mono" data-role="product-section">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
         <div class="w-full overflow-x-auto">
@@ -20,7 +33,7 @@
                 </thead>
                 <tbody class="bg-white" data-role="product-list">
                     <%= for product <- @products do %>
-                        <.live_component module={ProductRow} id={product.id} product={product} />
+                    <.live_component module={ProductRow} id={product.id} product={product} />
                     <% end %>
                 </tbody>
             </table>
