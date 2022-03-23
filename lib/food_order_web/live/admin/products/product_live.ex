@@ -14,14 +14,21 @@ defmodule FoodOrderWeb.Admin.ProductLive do
 
   @impl true
   def handle_params(params, _url, socket) do
+    name = params["name"] || ""
+    sort_by = (params["sort_by"] || "updated_at") |> String.to_atom()
+    sort_order = (params["sort_order"] || "desc") |> String.to_atom()
+
+    sort = %{sort_by: sort_by, sort_order: sort_order}
     live_action = socket.assigns.live_action
-    products = Products.list_products()
+    products = Products.list_products(name: name, sort: sort)
     assigns = [products: products, name: "", loading: false]
 
+    options = sort
     socket =
       socket
       |> apply_action(live_action, params)
       |> assign(assigns)
+      |> assign(options: options)
 
     {:noreply, socket}
   end
