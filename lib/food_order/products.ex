@@ -6,7 +6,7 @@ defmodule FoodOrder.Products do
 
   def list_products(params \\ []) when is_list(params) do
     query = from(p in Product)
-    IO.inspect params
+
     params
     |> Enum.reduce(query, fn
       {:name, name}, query ->
