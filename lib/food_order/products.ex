@@ -4,6 +4,15 @@ defmodule FoodOrder.Products do
   alias FoodOrder.Repo
   import Ecto.Query
 
+  def list_suggest_names(name) do
+    name = "%" <> name <> "%"
+
+    Product
+    |> where([p], ilike(p.name, ^name))
+    |> select([p], p.name)
+    |> Repo.all()
+  end
+
   def list_products(params \\ []) when is_list(params) do
     query = from(p in Product)
 
