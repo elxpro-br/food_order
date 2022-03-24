@@ -46,5 +46,22 @@ defmodule FoodOrderWeb.Admin.ProductLiveTest do
 
       refute has_element?(view, "[data-role=delete][data-id=#{product.id}]")
     end
+
+    test "click sorting by patches",
+         %{conn: conn} do
+      {:ok, view, _html} = live(conn, Routes.admin_product_path(conn, :index))
+
+      view
+      |> element("[data-role=sort][data-id=name]")
+      |> render_click()
+
+      assert_patched(view, "/admin/products?sort_by=name&sort_order=asc&name=")
+
+      view
+      |> element("[data-role=sort][data-id=name]")
+      |> render_click()
+
+      assert_patched(view, "/admin/products?sort_by=name&sort_order=desc&name=")
+    end
   end
 end

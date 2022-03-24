@@ -12,7 +12,6 @@ defmodule FoodOrderWeb.Admin.Product.Sort do
   end
 
   defp assign_color(socket, %{sort_by: sort_by, options: %{sort_by: sort_by_options}}) do
-
     if sort_by == sort_by_options do
       assign(socket, color: "#ff761a")
     else
