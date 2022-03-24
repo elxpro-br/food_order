@@ -4,8 +4,8 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   alias FoodOrder.Products.Product
   alias FoodOrderWeb.Admin.Product.FilterByName
   alias FoodOrderWeb.Admin.Product.ProductRow
-  alias FoodOrderWeb.Admin.Products.Form
   alias FoodOrderWeb.Admin.Product.Sort
+  alias FoodOrderWeb.Admin.Products.Form
 
   @impl true
   def mount(_p, _s, socket) do
@@ -21,7 +21,7 @@ defmodule FoodOrderWeb.Admin.ProductLive do
     sort = %{sort_by: sort_by, sort_order: sort_order}
     live_action = socket.assigns.live_action
     products = Products.list_products(name: name, sort: sort)
-    assigns = [products: products, name: "", loading: false]
+    assigns = [products: products, name: "", loading: false, names: []]
 
     options = sort
 
@@ -38,6 +38,12 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   def handle_event("delete", %{"id" => id}, socket) do
     {:ok, _} = Products.delete(id)
     {:noreply, assign(socket, :products, Products.list_products())}
+  end
+
+  @impl true
+  def handle_event("suggest", %{"name" => name}, socket) do
+    names = Products.list_suggest_names(name)
+    {:noreply, assign(socket, names: names)}
   end
 
   @impl true
