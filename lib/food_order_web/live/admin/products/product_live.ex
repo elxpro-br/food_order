@@ -2,9 +2,7 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   use FoodOrderWeb, :live_view
   alias FoodOrder.Products
   alias FoodOrder.Products.Product
-  alias FoodOrderWeb.Admin.Product.FilterByName
-  alias FoodOrderWeb.Admin.Product.ProductRow
-  alias FoodOrderWeb.Admin.Product.Sort
+  alias FoodOrderWeb.Admin.Product.{FilterByName, ProductRow, Sort, Paginate}
   alias FoodOrderWeb.Admin.Products.Form
 
   @impl true
