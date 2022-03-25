@@ -2,7 +2,10 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   use FoodOrderWeb, :live_view
   alias FoodOrder.Products
   alias FoodOrder.Products.Product
-  alias FoodOrderWeb.Admin.Product.{FilterByName, ProductRow, Sort, Paginate}
+  alias FoodOrderWeb.Admin.Product.FilterByName
+  alias FoodOrderWeb.Admin.Product.Paginate
+  alias FoodOrderWeb.Admin.Product.ProductRow
+  alias FoodOrderWeb.Admin.Product.Sort
   alias FoodOrderWeb.Admin.Products.Form
 
   @impl true
@@ -13,15 +16,22 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   @impl true
   def handle_params(params, _url, socket) do
     name = params["name"] || ""
+
+    page = String.to_integer(params["page"] || "1")
+    per_page = String.to_integer(params["per_page"] || "4")
+    paginate = %{page: page, per_page: per_page}
+
     sort_by = (params["sort_by"] || "updated_at") |> String.to_atom()
     sort_order = (params["sort_order"] || "desc") |> String.to_atom()
-
     sort = %{sort_by: sort_by, sort_order: sort_order}
+
     live_action = socket.assigns.live_action
-    products = Products.list_products(name: name, sort: sort)
+
+    products = Products.list_products(paginate: paginate, name: name, sort: sort)
+
     assigns = [products: products, name: "", loading: false, names: []]
 
-    options = sort
+    options = Map.merge(paginate, sort)
 
     socket =
       socket
