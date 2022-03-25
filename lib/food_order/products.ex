@@ -22,6 +22,9 @@ defmodule FoodOrder.Products do
         name = "%" <> name <> "%"
         where(query, [q], ilike(q.name, ^name))
 
+      {:paginate, %{page: page, per_page: per_page}}, query ->
+        from q in query, offset: ^((page - 1) * per_page), limit: ^per_page
+
       {:sort, %{sort_by: sort_by, sort_order: sort_order}}, query ->
         order_by(query, [q], [{^sort_order, ^sort_by}])
     end)
