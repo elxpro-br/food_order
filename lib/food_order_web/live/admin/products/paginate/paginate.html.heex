@@ -1,0 +1,23 @@
+<div class="flex flex-col items-center my-12" id={@id}>
+    <div class="flex">
+    <%= if @options.page > 1 do %>
+        <div class="h-8 w8 mr-1 flex justify-center items center cursor-pointer">
+            <.page_link text={"<<"} data_id="prev" page={@options.page - 1} options={@options} name={@name} socket={@socket} />
+        </div>
+        <% end %>
+
+        <div class="flex h-8 font-medium">
+
+            <%= for i <- (@options.page - 2)..(@options.page + 1), i > 0 do %>
+            <div
+                class={"w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in border-t-2 #{i == @options.page && "border-yellow-600" || "border-transparent"}"}>
+                <.page_link text={i} page={i} options={@options} name={@name} socket={@socket} data_id={i} />
+            </div>
+            <% end %>
+        </div>
+
+        <div class="h-8 w8 mr-1 flex justify-center items center cursor-pointer">
+            <.page_link text={">>"} page={@options.page + 1} options={@options} name={@name} socket={@socket} data_id="next" />
+        </div>
+    </div>
+</div>

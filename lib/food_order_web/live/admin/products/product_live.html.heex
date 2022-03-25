@@ -1,5 +1,6 @@
 <header class="flex justify-between py-3 mx-auto p-6 items-center border-b border-gray-200">
     <.live_component module={FilterByName} id="filter-by-name" name={@name} names={@names} />
+    <.live_component module={Paginate} id="paginate" options={@options} name={@name} />
 </header>
 
 <%= if @loading do %>
