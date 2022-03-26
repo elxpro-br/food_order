@@ -5,6 +5,7 @@ defmodule FoodOrderWeb.Admin.ProductLive do
   alias FoodOrderWeb.Admin.Product.FilterByName
   alias FoodOrderWeb.Admin.Product.Paginate
   alias FoodOrderWeb.Admin.Product.ProductRow
+  alias FoodOrderWeb.Admin.Product.SelectPerPage
   alias FoodOrderWeb.Admin.Product.Sort
   alias FoodOrderWeb.Admin.Products.Form
 
