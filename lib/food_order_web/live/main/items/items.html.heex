@@ -7,5 +7,5 @@
                 <% end %>
         </div>
     </section>
-    <a href="#" phx-click="load-more" phx-target={@myself}>load-more</a>
+    <div id="products-loading" data-page-number={@page} phx-hook="ScrollProducts" phx-target={@myself} />
 </div>
