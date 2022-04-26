@@ -82,4 +82,5 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :waffle,
-  storage: Waffle.Storage.Local
+  storage: Waffle.Storage.Local,
+  storage_dir_prefix: "priv/static/uploads/"

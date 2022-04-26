@@ -13,6 +13,12 @@ defmodule FoodOrder.ProductsTest do
     assert Products.get!(product.id).name == product.name
   end
 
+  test "list_suggest_names!/1" do
+    payload = %{name: "pizza", size: "small", price: 100, description: "abobora"}
+    {:ok, _product} = Products.create_product(payload)
+    assert payload.name in Products.list_suggest_names("pi")
+  end
+
   test "delete/1" do
     payload = %{name: "pizza", size: "small", price: 100, description: "abobora"}
     {:ok, product} = Products.create_product(payload)
@@ -48,7 +54,7 @@ defmodule FoodOrder.ProductsTest do
     }
 
     assert {:ok, %Product{} = product} = Products.create_product(payload)
-    [url | _] = Products.get_image(product)
+    url = Products.get_image(product)
     assert String.contains?(url, file_upload.filename)
   end
 
