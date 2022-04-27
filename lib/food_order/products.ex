@@ -65,8 +65,7 @@ defmodule FoodOrder.Products do
     if Mix.env() == :prod do
       url
     else
-      [_ | url] = String.split(url, "/priv/static")
-      url
+      "/uploads" <> url
     end
   end
 end
