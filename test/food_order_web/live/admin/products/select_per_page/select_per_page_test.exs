@@ -30,6 +30,5 @@ defmodule FoodOrderWeb.Admin.Product.SelectPerPageTest do
       assert has_element?(view, "[data-role=product-item][data-id=#{product_4.id}]")
       assert has_element?(view, "[data-role=product-item][data-id=#{product_5.id}]")
     end
-
   end
 end
