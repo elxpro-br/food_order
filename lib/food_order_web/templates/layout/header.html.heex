@@ -1,4 +1,4 @@
-<nav class="container mx-auto flex items-center justify-between py-4">
+<nav class="mx-auto flex items-center justify-between py-4">
     <div id="logo">
         <%= link to: Routes.main_path(@conn, :index) do %>
         <img src={Routes.static_path(@conn, "/images/logo.png" )} alt="" class="h-16 w-16">
@@ -20,10 +20,10 @@
             <li class="ml-6"><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
             <% end %>
             <li class="ml-6" id="shopping-cart">
-                <a href="" class="inline-block px-4 py-2 rounded-full items-center text-white">
+                <%= link to: Routes.cart_path(@conn, :index), class: "inline-block px-4 py-2 rounded-full items-center text-white" do %>
                     <span class="font-bold pr-2 text-xs">10</span>
                     <img src={Routes.static_path(@conn, "/images/cart.svg" )} alt="" class="h-6 w-6">
-                </a>
+                <% end %>
             </li>
         </ul>
     </div>
