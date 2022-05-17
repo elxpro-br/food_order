@@ -14,7 +14,7 @@ defmodule FoodOrder.Carts.Core.HandleCartsTest do
 
   describe "handle carts" do
     test "should create a new cart" do
-      assert @start_cart == create_carts(444_444)
+      assert @start_cart == create_cart(444_444)
     end
 
     test "should add a new item in the cart" do

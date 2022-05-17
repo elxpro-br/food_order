@@ -1,6 +1,6 @@
 defmodule FoodOrder.Carts.Core.HandleCarts do
   alias FoodOrder.Carts.Data.Cart
-  def create_carts(id), do: Cart.new(id)
+  def create_cart(id), do: Cart.new(id)
 
   def add(cart, item) do
     new_total_price = Money.add(cart.total_price, item.price)
