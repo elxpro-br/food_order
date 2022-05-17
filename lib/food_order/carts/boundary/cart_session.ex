@@ -2,7 +2,9 @@ defmodule FoodOrder.Carts.Boundary.CartSession do
   use GenServer
   alias FoodOrder.Carts.Core.HandleCarts, as: Cart
 
-  def start_link(_), do: GenServer.start_link(__MODULE__, :cart_session, name: :cart_session)
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, :cart_session, name: :cart_session)
+  end
 
   def init(name) do
     :ets.new(name, [:set, :public, :named_table])
@@ -25,28 +27,28 @@ defmodule FoodOrder.Carts.Boundary.CartSession do
     {:noreply, name}
   end
 
-  def handle_call({:inc, cart_id, product_id}, name) do
+  def handle_call({:inc, cart_id, product_id}, _from, name) do
     {:ok, cart} = find_cart(name, cart_id)
     cart = Cart.inc(cart, product_id)
     :ets.insert(name, {cart_id, cart})
     {:reply, cart, name}
   end
 
-  def handle_call({:remove, cart_id, product_id}, name) do
+  def handle_call({:remove, cart_id, product_id}, _from, name) do
     {:ok, cart} = find_cart(name, cart_id)
     cart = Cart.remove(cart, product_id)
     :ets.insert(name, {cart_id, cart})
     {:reply, cart, name}
   end
 
-  def handle_call({:dec, cart_id, product_id}, name) do
+  def handle_call({:dec, cart_id, product_id}, _from, name) do
     {:ok, cart} = find_cart(name, cart_id)
     cart = Cart.dec(cart, product_id)
     :ets.insert(name, {cart_id, cart})
     {:reply, cart, name}
   end
 
-  def handle_call({:get, cart_id}, name) do
+  def handle_call({:get, cart_id}, _from, name) do
     {:ok, cart} = find_cart(name, cart_id)
     {:reply, cart, name}
   end
