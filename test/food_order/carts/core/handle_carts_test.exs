@@ -81,5 +81,49 @@ defmodule FoodOrder.Carts.Core.HandleCartsTest do
       assert product.price |> Money.add(product.price) |> Money.add(product.price) ==
                cart.total_price
     end
+
+    test "should dec the same element into the cart" do
+      product = insert(:product)
+
+      cart =
+        @start_cart
+        |> add(product)
+        |> add(product)
+        |> dec(product.id)
+
+      assert 1 == cart.total_qty
+
+      assert product.price |> Money.add(product.price) |> Money.subtract(product.price) ==
+               cart.total_price
+    end
+
+    test "should decuntil remove the product" do
+      product = insert(:product)
+
+      cart =
+        @start_cart
+        |> add(product)
+        |> add(product)
+        |> dec(product.id)
+        |> dec(product.id)
+
+      assert [] == cart.items
+      assert 0 == cart.total_qty
+
+      assert Money.new(0) == cart.total_price
+    end
+
+    test "should add two different items in the same cart" do
+      product = insert(:product)
+      product_2 = insert(:product)
+
+      cart =
+        @start_cart
+        |> add(product)
+        |> add(product_2)
+
+      assert 2 == cart.total_qty
+      assert Money.add(product.price, product_2.price) == cart.total_price
+    end
   end
 end
