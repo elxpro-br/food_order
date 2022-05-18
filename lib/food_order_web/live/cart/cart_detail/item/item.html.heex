@@ -7,14 +7,14 @@
 
     <span class="flex-1" data-role="order-events" data-id={@id}>
         <div class="flex items-center">
-            <button class="p-1 m-2 rounded-full text-white font-bold btn-primary" data-role="dec" data-id={@id}>-</button>
+            <button class="p-1 m-2 rounded-full text-white font-bold btn-primary" data-role="dec" data-id={@id} phx-click="dec" phx-target={@myself}>-</button>
             <div data-role="qty" data-id={@id}><%= @item.qty %> Item(s)</div>
-            <button class="p-1 m-2 rounded-full text-white font-bold btn-primary" data-role="inc" data-id={@id}>+</button>
+            <button class="p-1 m-2 rounded-full text-white font-bold btn-primary" data-role="inc" data-id={@id} phx-click="inc" phx-target={@myself}>+</button>
         </div>
     </span>
 
     <span class="flex-1" data-role="order-details" data-id={@id}>
         <span class="font-bold text-lg" data-role="price" data-id={@id}><%= @item.item.price %></span>
-        <button  data-role="remove" data-id={@id} class="w-6 h-6 rounded-full text-white font-bold btn-primary">&times</button>
+        <button  data-role="remove" data-id={@id} class="w-6 h-6 rounded-full text-white font-bold btn-primary" phx-click="remove" phx-target={@myself}>&times</button>
     </span>
 </div>

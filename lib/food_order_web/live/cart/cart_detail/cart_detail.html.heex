@@ -7,8 +7,8 @@
     </div>
 
     <div data-role="order-list">
-        <%= for item <- @cart.items  do %>
-            <.live_component module={Item} id={item.item.id} item={item} />
+        <%= for item <- @cart.items |> Enum.sort do %>
+            <.live_component module={Item} id={item.item.id} item={item} cart_id={@cart.id} />
         <% end %>
     </div>
     <hr>
