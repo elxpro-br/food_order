@@ -3,7 +3,7 @@
         <h1 class="text-xl font-bold mb-8" data-role="items-info" data-id="all-food">All Foods</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16" id="products-loaded" phx-update="append">
             <%= for product <- @products do %>
-            <.live_component module={Item} id={"item-" <> product.id} product={product} />
+            <.live_component module={Item} id={"item-" <> product.id} product={product} cart_id={@cart_id} />
                 <% end %>
         </div>
     </section>

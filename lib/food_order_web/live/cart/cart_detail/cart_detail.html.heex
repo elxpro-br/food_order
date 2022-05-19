@@ -7,10 +7,10 @@
     </div>
 
     <div data-role="order-list">
-        <%= for id <- 1..10  do %>
-            <.live_component module={Item} id={Integer.to_string(id)} />
+        <%= for item <- @cart.items |> Enum.sort do %>
+            <.live_component module={Item} id={item.item.id} item={item} cart_id={@cart.id} />
         <% end %>
     </div>
     <hr>
-    <.live_component module={ConfirmOrder} id="confirm-order" />
+    <.live_component module={ConfirmOrder} id="confirm-order" cart={@cart} />
 </div>
