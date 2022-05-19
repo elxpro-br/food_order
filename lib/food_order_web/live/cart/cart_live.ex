@@ -9,4 +9,8 @@ defmodule FoodOrderWeb.CartLive do
     cart = Carts.get(cart_id)
     {:ok, assign(socket, cart: cart)}
   end
+
+  def handle_info({:update, cart}, socket) do
+    {:noreply, assign(socket, cart: cart)}
+  end
 end
