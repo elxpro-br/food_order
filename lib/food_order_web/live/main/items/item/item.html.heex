@@ -6,7 +6,7 @@
         <span class="size py-1 px-4 rounded-full uppercase text-xs"><%= @product.size %> </span>
         <div class="flex items-center justify-around mt-6">
             <span class="font-bold text-lg" data-role="product-price" data-id={@id}><%= @product.price %> </span>
-            <button class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold" data-role="product-add" data-id={@id}>
+            <button class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold" data-role="product-add" data-id={@id} phx-click="add" phx-target={@myself}>
                 <span data->+</span>
                 <span class="ml-4">add</span>
             </button>

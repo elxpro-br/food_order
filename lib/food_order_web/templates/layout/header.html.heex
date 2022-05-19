@@ -18,13 +18,8 @@
             <% else %>
             <li class="ml-6"><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
             <li class="ml-6"><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
+            <li></li>
             <% end %>
-            <li class="ml-6" id="shopping-cart">
-                <%= link to: Routes.cart_path(@conn, :index), class: "inline-block px-4 py-2 rounded-full items-center text-white" do %>
-                    <span class="font-bold pr-2 text-xs">10</span>
-                    <img src={Routes.static_path(@conn, "/images/cart.svg" )} alt="" class="h-6 w-6">
-                <% end %>
-            </li>
         </ul>
     </div>
 </nav>
