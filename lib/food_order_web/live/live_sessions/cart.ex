@@ -12,7 +12,7 @@ defmodule LiveSessions.Cart do
   defp assign_user(socket, nil), do: assign(socket, :current_user, nil)
 
   defp assign_user(socket, user_token) do
-    assign_new(socket, :curret_user, fn -> Accounts.get_user_by_session_token(user_token) end)
+    assign_new(socket, :current_user, fn -> Accounts.get_user_by_session_token(user_token) end)
   end
 
   defp create_cart(socket, cart_id) do
