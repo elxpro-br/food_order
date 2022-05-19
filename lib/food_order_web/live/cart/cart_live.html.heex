@@ -1,4 +1,4 @@
-<section class="py-16">
+<section class="py-16"  id="cart-session-id" phx-hook="CartSession">
     <%= if @cart.total_qty == 0 do %>
     <.live_component module={EmptyCart} id="empty-cart" />
     <% else %>
