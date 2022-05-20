@@ -97,7 +97,7 @@ defmodule FoodOrder.Carts.Core.HandleCartsTest do
                cart.total_price
     end
 
-    test "should decuntil remove the product" do
+    test "should dec until remove the product" do
       product = insert(:product)
 
       cart =
@@ -111,6 +111,42 @@ defmodule FoodOrder.Carts.Core.HandleCartsTest do
       assert 0 == cart.total_qty
 
       assert Money.new(0) == cart.total_price
+    end
+
+    test "should dec with two products" do
+      product = insert(:product)
+      product_2 = insert(:product)
+
+      cart =
+        @start_cart
+        |> add(product)
+        |> add(product_2)
+        |> inc(product.id)
+        |> inc(product.id)
+        |> dec(product.id)
+        |> dec(product.id)
+
+      assert [%{item: product_2, qty: 1}, %{item: product, qty: 1}] == cart.items
+      assert 2 == cart.total_qty
+
+      assert Money.add(product_2.price, product.price) == cart.total_price
+    end
+
+    test "should inc same product twice" do
+      product = insert(:product)
+      product_2 = insert(:product)
+
+      cart =
+        @start_cart
+        |> add(product)
+        |> add(product_2)
+        |> inc(product.id)
+        |> inc(product.id)
+
+      assert [%{item: product_2, qty: 1}, %{item: product, qty: 3}] == cart.items
+      assert 4 == cart.total_qty
+
+      assert Money.multiply(product.price, 3) |> Money.add(product_2.price) == cart.total_price
     end
 
     test "should add two different items in the same cart" do
