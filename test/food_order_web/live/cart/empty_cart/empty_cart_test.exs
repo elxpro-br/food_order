@@ -25,10 +25,10 @@ defmodule FoodOrderWeb.CartLive.EmptyCartTest do
     {:ok, view, _html} = live(conn, Routes.cart_path(conn, :index))
 
     {:ok, view, _html} =
-    view
-    |> element("[data-role=go-main-page]", "Go back")
-    |> render_click()
-    |> follow_redirect(conn, Routes.main_path(conn, :index))
+      view
+      |> element("[data-role=go-main-page]", "Go back")
+      |> render_click()
+      |> follow_redirect(conn, Routes.main_path(conn, :index))
 
     assert has_element?(view, "[data-id=recomendation]", "Make your order")
   end
