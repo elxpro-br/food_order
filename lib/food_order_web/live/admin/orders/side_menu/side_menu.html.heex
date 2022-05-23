@@ -1,3 +1,31 @@
-<div id={@id}>
-hi
+<div id={@id} class="w-64 px-8 py-4 bg-gray-100 border-r overflow-auto">
+    <nav class="mt-8">
+        <h2 class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2" data-role="side-title">Orders</h2>
+        <div class="mt-2 -mx-3">
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="all-orders">All</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="all-orders-qty">30</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="not-started">Not Started</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="not-started-qty">3</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="received">Received</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="received-qty">3</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="preparing">Preparing</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="preparing-qty">3</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="delivering">Delivering</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="delivering-qty">3</span>
+            </a>
+            <a href="#" class="flex items-center justify-between px-3 py-2 bg-gray-200 rounded-lg">
+                <span class="text-sm font-medium text-gray-900" data-role="delivered">Delivered</span>
+                <span class="text-sm font-semibold text-gray-700" data-role="delivered-qty">3</span>
+            </a>
+        </div>
+    </nav>
 </div>

@@ -8,7 +8,6 @@ defmodule FoodOrderWeb.Admin.OrderLiveTest do
     test "render main elements", %{conn: conn} do
       {:ok, view, _html} = live(conn, Routes.admin_order_path(conn, :index))
       assert has_element?(view, "#side-menu")
-      open_browser(view)
     end
   end
 end
