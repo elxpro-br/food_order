@@ -7,9 +7,13 @@ defmodule FoodOrder.Orders do
     ListOrdersByUserId
   }
 
-  alias FoodOrder.Orders.Events.NewOrder
+  alias FoodOrder.Orders.Events.{NewOrder, UpdateOrder}
 
   defdelegate subscribe_to_receive_new_orders, to: NewOrder, as: :subscribe
+  defdelegate subscribe_admin_orders_update, to: UpdateOrder
+  defdelegate subscribe_update_user_row(user_id), to: UpdateOrder
+  defdelegate subscribe_update_order(order_id), to: UpdateOrder
+
   defdelegate all_status_orders, to: AllStatusOrders, as: :execute
   defdelegate create_order_by_cart(payload), to: CreateOrderByCart, as: :execute
 
