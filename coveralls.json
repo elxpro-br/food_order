@@ -1,6 +1,7 @@
 {
     "skip_files": [
         "lib/food_order/application.ex",
+        "lib/food_order/orders/orders.ex",
         "lib/food_order_web.ex",
         "lib/food_order_web/telemetry.ex",
         "lib/food_order_web/views/error_helpers.ex",
