@@ -1,6 +1,8 @@
 <div class="flex-shrink-0 p-3 w-80 bg-gray-100 rounded-md m-2">
     <h3 class="text-sm font-medium text-gray-900 uppercase" data-role="layer-title" data-id={@id}><%= humanize(@id) %></h3>
     <ul class="mt-2" data-role="layer-cards" data-id={@id} id={@id}>
-
+        <%= for card <- @cards do %>
+            <.live_component module={Card} id={card.id} board_id={@id} card={card} />
+        <% end %>
     </ul>
 </div>
