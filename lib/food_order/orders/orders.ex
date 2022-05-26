@@ -4,7 +4,8 @@ defmodule FoodOrder.Orders do
     CreateOrderByCart,
     GetOrderByIdAndCustomerId,
     ListOrdersByStatus,
-    ListOrdersByUserId
+    ListOrdersByUserId,
+    UpdateOrderStatus
   }
 
   alias FoodOrder.Orders.Events.{NewOrder, UpdateOrder}
@@ -19,6 +20,10 @@ defmodule FoodOrder.Orders do
 
   defdelegate get_order_by_id_and_customer_id(order_id, customer_id),
     to: GetOrderByIdAndCustomerId,
+    as: :execute
+
+  defdelegate update_order_status(order_id, old_status, new_status),
+    to: UpdateOrderStatus,
     as: :execute
 
   defdelegate list_order_by_status(status), to: ListOrdersByStatus, as: :execute
