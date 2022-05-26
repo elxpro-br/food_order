@@ -3,6 +3,12 @@ defmodule FoodOrder.CartsTest do
   alias FoodOrder.Carts
   import FoodOrder.Factory
 
+  test "sh0ould delete cart" do
+    assert :ok == Carts.create(4444)
+    assert :ok == Carts.delete_cart(4444)
+    # assert [] == Carts.get(4444)
+  end
+
   test "should create session" do
     assert :ok == Carts.create(4444)
   end
