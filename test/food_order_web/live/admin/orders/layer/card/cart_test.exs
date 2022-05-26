@@ -1,4 +1,4 @@
-defmodule FoodOrderWeb.Admin.OrderLive.LayerTest do
+defmodule FoodOrderWeb.Admin.OrderLive.Layer.CardTest do
   use FoodOrderWeb.ConnCase
   import Phoenix.LiveViewTest
 
