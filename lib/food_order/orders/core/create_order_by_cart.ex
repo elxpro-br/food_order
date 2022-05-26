@@ -1,6 +1,7 @@
 defmodule FoodOrder.Orders.Core.CreateOrderByCart do
   alias FoodOrder.Carts
   alias FoodOrder.Orders.Data.Order
+  alias FoodOrder.Orders.Events.NewOrder
   alias FoodOrder.Repo
 
   def execute(%{"current_user" => current_user} = payload) do
@@ -9,7 +10,7 @@ defmodule FoodOrder.Orders.Core.CreateOrderByCart do
     |> convert_session_to_payload_item
     |> create_order_payload(payload)
     |> Repo.insert()
-    # TODO broadcast
+    |> NewOrder.broadcast()
     |> remove_cache()
   end
 
