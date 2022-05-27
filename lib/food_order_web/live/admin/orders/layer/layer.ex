@@ -1,68 +1,10 @@
 defmodule FoodOrderWeb.Admin.OrderLive.Layer do
   use FoodOrderWeb, :live_component
   alias __MODULE__.Card
+  alias FoodOrder.Orders
 
-  @status [:NOT_STARTED, :DELIVERED]
-
-  def update(assigns, socket) do
-    cards = [
-      %{
-        id: Ecto.UUID.generate(),
-        updated_at: DateTime.utc_now(),
-        status: @status |> Enum.shuffle() |> hd,
-        user: %{
-          email: "adm@elxpro.com"
-        },
-        total_price: Money.new(10_000),
-        total_quantity: 2,
-        items: [
-          %{
-            id: Ecto.UUID.generate(),
-            quantity: 10,
-            product: %{
-              name: "abobora",
-              price: Money.new(200)
-            }
-          },
-          %{
-            id: Ecto.UUID.generate(),
-            quantity: 10,
-            product: %{
-              name: "abobora",
-              price: Money.new(200)
-            }
-          }
-        ]
-      },
-      %{
-        id: Ecto.UUID.generate(),
-        updated_at: DateTime.utc_now(),
-        status: @status |> Enum.shuffle() |> hd,
-        user: %{
-          email: "adm@elxpro.com"
-        },
-        total_price: Money.new(10_000),
-        total_quantity: 2,
-        items: [
-          %{
-            id: Ecto.UUID.generate(),
-            quantity: 10,
-            product: %{
-              name: "abobora",
-              price: Money.new(200)
-            }
-          },
-          %{
-            id: Ecto.UUID.generate(),
-            quantity: 10,
-            product: %{
-              name: "abobora",
-              price: Money.new(200)
-            }
-          }
-        ]
-      }
-    ]
+  def update(%{id: id} = assigns, socket) do
+    cards = Orders.list_order_by_status(id)
 
     {:ok,
      socket
