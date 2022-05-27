@@ -3,6 +3,23 @@
         <span class="tesxt-lg font-bold">Total Amount:</span>
         <span class="text-2xl font-bold ml-2" data-role="order-total-price"><%= @cart.total_price %></span>
     </div>
+    <%= if @current_user do %>
+    <div>
+        <form action="" class="mt-12" id="confirm-order-form" phx-target={@myself} phx-submit="create_order">
+            <input type="text" class="border border-gray-400 p-2 w-1/2 mb-4" id="phone_number" name="phone_number"
+                placeholder="Phone Number">
+            <input type="text" class="border border-gray-400 p-2 w-1/2 mb-4" id="address" name="address"
+                placeholder="Address">
+            <input type="hidden" id="current_user" name="current_user" value={@current_user.id}>
 
-    <a href="/" class="inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold mt-6"> Login to Continue</a>
+            <div>
+                <button class="btn-primary px-6 py-2 rounded-full text-white font-bold mt-6" id="create-order">Order
+                    Now</button>
+            </div>
+        </form>
+    </div>
+
+    <% else %>
+    <%= link "Login to Continue", to: Routes.user_session_path(@socket, :new), class: "inline-block cursor-pointer btn-primary px-6 py-2 rounded-full text-white font-bold mt-6" %>
+    <% end %>
 </div>

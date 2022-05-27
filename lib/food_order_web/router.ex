@@ -93,6 +93,10 @@ defmodule FoodOrderWeb.Router do
         live "/products/:id/edit", ProductLive, :edit
         live "/products/:id", ProductLive.Show, :show
       end
+
+      scope "/customer", Customer, as: :customer do
+        live "/orders", OrderLive, :index
+      end
     end
   end
 
