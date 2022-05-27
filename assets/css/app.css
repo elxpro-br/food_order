@@ -216,3 +216,8 @@ section.login a:hover{
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+
+.sortable-ghost{
+    opacity: 0.75;
+}
