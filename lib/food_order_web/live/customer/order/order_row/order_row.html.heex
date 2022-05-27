@@ -1,0 +1,24 @@
+<tr id={@id}>
+    <td class="border px-4 py-2" data-role="show-status" data-id{@id}>
+        <%= live_redirect @order.id, to: "/customer-order-status" %>
+    </td>
+
+    <td class="border px-4 py-2" data-role="details" data-id{@id}>
+        <%= @order.address %> - <%= @order.phone_number %>
+    </td>
+
+    <td class="border px-4 py-2" data-role="status" data-id{@id}>
+        <%= if @order.status != :DELIVERED do %>
+        <span class="text-yellow-600">
+            <%= humanize(@order.status) %>
+        </span>
+        <% else %>
+        <%= humanize(@order.status) %>
+        <% end %>
+    </td>
+
+    <td class="border px-4 py-2" data-role="date" data-id{@id}>
+        <%= @order.updated_at |> NaiveDateTime.to_string %>
+    </td>
+
+</tr>
