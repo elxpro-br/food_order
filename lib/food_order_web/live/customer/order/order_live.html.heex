@@ -1,1 +1,27 @@
-hi
+<section >
+
+<div class="container mx-auto pt-12">
+    <h1 class="font-bold text-lg mb-4" data-role="section-title">All Orders</h1>
+
+    <table class="w-full table-auto bg-white">
+        <thead>
+            <th class="px-4 py-2 text-left">Orders</th>
+            <th class="px-4 py-2 text-left">Address</th>
+            <th class="px-4 py-2 text-left">Status</th>
+            <th class="px-4 py-2 text-left">Time</th>
+        </thead>
+
+        <tbody>
+            <%= if  @orders == [] do %>
+                <tr>
+                    <td class="p-4"><span data-role="no-orders">No orders found!</span></td>
+                </tr>
+            <% else %>
+                <%= for order <- @orders do %>
+                    <.live_component module={OrderRow} id={order.id} order={order} />
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+</section>
