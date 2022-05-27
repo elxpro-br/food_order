@@ -2,6 +2,11 @@ defmodule LiveSessions.Permissions do
   import Phoenix.LiveView
   alias FoodOrder.Accounts
   alias FoodOrderWeb.Router.Helpers, as: Routes
+  alias LiveSessions.CreateCart
+
+  def on_mount(:user, _params, %{"user_token" => user_token}, socket) do
+    assign_user(socket, :user, user_token)
+  end
 
   def on_mount(:admin, _params, %{"user_token" => user_token}, socket) do
     assign_user(socket, :admin, user_token)
@@ -9,6 +14,18 @@ defmodule LiveSessions.Permissions do
 
   defp assign_user(socket, _, nil) do
     error_login(socket, "You must be logged in")
+  end
+
+  defp assign_user(socket, :user, user_token) do
+    current_user = Accounts.get_user_by_session_token(user_token)
+    cart_id = get_connect_params(socket)["cart_id"]
+
+    socket =
+      socket
+      |> assign_new(:current_user, fn -> current_user end)
+      |> CreateCart.execute(cart_id)
+
+    {:cont, socket}
   end
 
   defp assign_user(socket, :admin, user_token) do

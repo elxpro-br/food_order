@@ -93,7 +93,9 @@ defmodule FoodOrderWeb.Router do
         live "/products/:id/edit", ProductLive, :edit
         live "/products/:id", ProductLive.Show, :show
       end
+    end
 
+    live_session :is_user, on_mount: {LiveSessions.Permissions, :user} do
       scope "/customer", Customer, as: :customer do
         live "/orders", OrderLive, :index
       end
