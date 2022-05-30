@@ -1,29 +1,23 @@
 import Sortable from "sortablejs";
 const Drag = {
-    mounted() {
-      const hook = this;
-      console.log(hook)
-      const selector = "#" + hook.el.id
+  mounted() {
+    const hook = this;
+    const selector = "#" + hook.el.id
+    const el = document.getElementById(hook.el.id)
 
-      document.querySelectorAll('.dropzone').forEach(dropzone => {
-        new Sortable(dropzone, {
-            animation: 0,
-            delay: 50,
-            delayOnTouchOnly: true,
-            group: 'shared',
-            draggable: 'draggable',
-            ghostClass: 'sortable-ghost',
-            onEnd: function(evt) {
-                console.log(evt)
-            
-               hook.pushEventTo(selector, 'dropped', {
-                 order_id: evt.item.id
-               })
-
-            }
+    new Sortable(el, {
+      group: 'shared',
+      draggable: '.draggable',
+      onEnd: function (evt) {
+        hook.pushEventTo(selector, 'dropped', {
+          order_id: evt.item.id,
+          new_status: evt.to.id,
+          old_status: evt.from.id,
         })
-      })
-    }
+
+      }
+    })
+  }
 }
 
 export default Drag;
