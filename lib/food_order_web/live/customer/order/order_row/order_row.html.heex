@@ -1,6 +1,6 @@
 <tr id={@id}>
     <td class="border px-4 py-2" data-role="show-status" data-id{@id}>
-        <%= live_redirect @order.id, to: "/customer-order-status" %>
+        <%= live_redirect @order.id, to: Routes.customer_order_status_path(@socket, :status, @order) %>
     </td>
 
     <td class="border px-4 py-2" data-role="details" data-id{@id}>
