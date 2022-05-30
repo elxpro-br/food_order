@@ -8,7 +8,7 @@
     </td>
 
     <td class="border px-4 py-2" data-role="status" data-id{@id}>
-        <%= if @order.status != :DELIVERED do %>
+        <%= if @order.status == :DELIVERED do %>
         <span class="text-yellow-600">
             <%= humanize(@order.status) %>
         </span>
