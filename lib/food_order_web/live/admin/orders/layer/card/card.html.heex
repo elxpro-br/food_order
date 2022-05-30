@@ -1,4 +1,4 @@
-<li id={@id} class="block p-5 mb-5 bg-white rounded-md shadow draggable">
+<li id={@id} class="block p-5 mb-5 bg-white rounded-md shadow draggable" data-role="order-status" data-id={@board_id <> @id}>
     <a href="#">
         <div class="flex justify-between mb-2">
             <p class="text-sm font-medium leading snug text-gray-900" data-role="card-number" data-id={@id}>
@@ -11,8 +11,7 @@
         <hr />
 
         <div>
-            <p class="text-sm p-2 font-medium leading-snug text-gray-900" data-role="list-items-title" data-id={@id}>
-                Order Items</p>
+            <p class="text-sm p-2 font-medium leading-snug text-gray-900" data-role="list-items-title" data-id={@id}>Order Items</p>
 
             <ul data-role="list-items" data-id={@id}>
                 <%= for item <- @card.items do %>
@@ -42,7 +41,7 @@
                 </li>
                 <li class="flex justify-between mb-1">
                     <span data-role="customer" data-id={@id}>Customer:</span>
-                    <span data-role="customer_amount" data-id={@id} class="font-bold"><%= @card.user.email %></span>
+                    <span data-role="customer_email" data-id={@id} class="font-bold"><%= @card.user.email %></span>
                 </li>
                 <%= if @card.status == :DELIVERED do %>
                 <a href="#" class="flex justify between mb-1 link">
