@@ -8,6 +8,8 @@ defmodule FoodOrder.Orders do
     UpdateOrderStatus
   }
 
+  alias FoodOrder.Orders.Data.Order
+
   alias FoodOrder.Orders.Events.{NewOrder, UpdateOrder}
 
   defdelegate subscribe_to_receive_new_orders, to: NewOrder, as: :subscribe
@@ -28,4 +30,10 @@ defmodule FoodOrder.Orders do
 
   defdelegate list_order_by_status(status), to: ListOrdersByStatus, as: :execute
   defdelegate list_order_by_user_id(user_id), to: ListOrdersByUserId, as: :execute
+
+  def get_status_list do
+    Order
+    |> Ecto.Enum.values(:status)
+    |> Enum.with_index()
+  end
 end

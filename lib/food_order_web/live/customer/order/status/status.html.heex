@@ -1,0 +1,30 @@
+<section class="status">
+
+<div class="container mx-auto">
+    <div class="status-box w-full lg:w-2/3 mx-auto">
+        <%= live_redirect "< back", to: Routes.customer_order_path(@socket, :index), class: "text-xs", "data-id": "order-lis" %>
+
+        <div class="flex items-center justify-between mb-12">
+            <h1 class="text-xl font-bold" data-id="title-screen">Track delivery status</h1>
+
+            <h6 class="bg-gray-200 text-green-600 text-xs py-2 pr-2 pl-2 rounded-full" data-role="order-id"><%= @order.id %></h6>
+                </div>
+
+
+            <ul>
+
+                <%= for {status, index} <- @status_list do %>
+                    <li class={"status_line text-sm md:text-xl" <>
+                        " #{index < 4 && "pb-16"}" <>
+                        " #{index < @current_status && " step-completed"}" <>
+                        " #{index == @current_status && " current"}"}
+                        }>
+                        <span data-role="order-status" data-id={Atom.to_string(status)}>
+                            <%= humanize(status) %>
+                        </span>
+                    </li>
+                <% end %>
+            </ul>
+    </div>
+</div>
+</section>

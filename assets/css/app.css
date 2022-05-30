@@ -218,6 +218,9 @@ section.login a:hover{
 }
 
 
-.sortable-ghost{
-    opacity: 0.75;
+section.status{
+  background: var(--third);
+  min-height: calc(100vh - 86px);
+
 }
+
