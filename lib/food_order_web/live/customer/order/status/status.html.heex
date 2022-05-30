@@ -12,12 +12,11 @@
 
 
             <ul>
-
                 <%= for {status, index} <- @status_list do %>
                     <li class={"status_line text-sm md:text-xl" <>
                         " #{index < 4 && "pb-16"}" <>
-                        " #{index < @current_status && " step-completed"}" <>
-                        " #{index == @current_status && " current"}"}
+                        " #{index < @current_status && "step-completed"}" <>
+                        " #{index == @current_status && "current"}"}
                         }>
                         <span data-role="order-status" data-id={Atom.to_string(status)}>
                             <%= humanize(status) %>

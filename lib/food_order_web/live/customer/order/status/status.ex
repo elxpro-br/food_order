@@ -15,7 +15,7 @@ defmodule FoodOrderWeb.Customer.OrderLive.Status do
 
     order = Orders.get_order_by_id_and_customer_id(id, current_user.id)
     status_list = Orders.get_status_list()
-    current_status = order.status
+    current_status = get_current_status(order.status)
 
     socket =
       socket
@@ -24,5 +24,16 @@ defmodule FoodOrderWeb.Customer.OrderLive.Status do
       |> assign(current_status: current_status)
 
     {:noreply, socket}
+  end
+
+  defp get_current_status(current_status) do
+    Orders.get_status_list()
+    |> Enum.find(fn {status, _index} -> status == current_status end)
+    |> then(fn {_, value} -> value end)
+  end
+
+  def handle_info({:update_order_user_row, order}, socket) do
+    current_status = get_current_status(order.status)
+    {:noreply, assign(socket, current_status: current_status)}
   end
 end

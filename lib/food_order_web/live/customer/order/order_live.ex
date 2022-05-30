@@ -13,4 +13,9 @@ defmodule FoodOrderWeb.Customer.OrderLive do
     orders = Orders.list_order_by_user_id(current_user.id)
     {:ok, assign(socket, orders: orders)}
   end
+
+  def handle_info({:update_order_user_row, order}, socket) do
+    send_update(OrderRow, id: order.id, order: order)
+    {:noreply, socket}
+  end
 end
