@@ -17,7 +17,7 @@
                         " #{index < 4 && "pb-16"}" <>
                         " #{index < @current_status && "step-completed"}" <>
                         " #{index == @current_status && "current"}"}
-                        }>
+                        } data-role="status-item" data-id={Atom.to_string(status)}>
                         <span data-role="order-status" data-id={Atom.to_string(status)}>
                             <%= humanize(status) %>
                         </span>

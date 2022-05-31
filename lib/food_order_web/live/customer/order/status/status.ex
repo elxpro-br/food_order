@@ -32,7 +32,7 @@ defmodule FoodOrderWeb.Customer.OrderLive.Status do
     |> then(fn {_, value} -> value end)
   end
 
-  def handle_info({:update_order_user_row, order}, socket) do
+  def handle_info({:update_order, order}, socket) do
     current_status = get_current_status(order.status)
     {:noreply, assign(socket, current_status: current_status)}
   end
