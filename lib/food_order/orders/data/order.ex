@@ -5,7 +5,7 @@ defmodule FoodOrder.Orders.Data.Order do
   alias FoodOrder.Orders.Data.Item
 
   @status_values ~w/NOT_STARTED RECEIVED PREPARING DELIVERING DELIVERED/a
-  @field ~w/status/a
+  @field ~w/status latitude longitude/a
   @required_field ~w/total_price total_quantity user_id address phone_number/a
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,7 +15,8 @@ defmodule FoodOrder.Orders.Data.Order do
     field :phone_number, :string
     field :total_price, Money.Ecto.Amount.Type
     field :status, Ecto.Enum, values: @status_values, default: :NOT_STARTED
-
+    field :latitude, :float
+    field :longitude, :float
     belongs_to :user, User
     has_many :items, Item
 
