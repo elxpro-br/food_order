@@ -4,9 +4,16 @@ defmodule FoodOrder.Orders.Data.Order do
   alias FoodOrder.Accounts.User
   alias FoodOrder.Orders.Data.Item
 
+  defimpl Jason.Encoder, for: Money do
+    def encode(value, opts) do
+      Jason.Encode.string(Money.to_string(value), opts)
+    end
+  end
+
   @status_values ~w/NOT_STARTED RECEIVED PREPARING DELIVERING DELIVERED/a
   @field ~w/status latitude longitude/a
   @required_field ~w/total_price total_quantity user_id address phone_number/a
+  @derive {Jason.Encoder, only: @field ++ @required_field}
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "orders" do

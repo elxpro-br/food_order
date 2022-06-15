@@ -320,7 +320,17 @@ section.status{
   background: var(--primary);
 }
 
+.order-location{
+  display: inline-flex;
+  padding: 16px;
+}
 
+#map{
+  height: 90vh;
+  width: 80vw;
+}
 
-
-
+.order-location ul{
+  overflow-y: scroll;
+  height: 70vh;
+}
