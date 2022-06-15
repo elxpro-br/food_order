@@ -1,0 +1,16 @@
+<div class="order-location">
+
+    <ul>
+        <%= for order <- @orders do %>
+        <li>
+            <a href="#" data-role="food-truck" data-id={order.id} phx-click="select_order"
+                phx-value-id={order.id} style={@selected_order != nil and @selected_order.id == order.id && "color: red;"
+                || "" }>
+                <%= order.id %>
+            </a>
+        </li>
+        <% end %>
+    </ul>
+
+    <div id="map" phx-hook="OrdersMap" data-select-point={@orders |> hd |> Jason.encode!()}></div>
+</div>

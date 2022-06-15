@@ -67,7 +67,9 @@ defmodule FoodOrder.MixProject do
       {:money, "~> 1.9"},
       {:waffle, "~> 1.1.0"},
       {:waffle_ecto, "~> 0.0.9"},
-      {:waffle_gcs, "~> 0.1", only: [:prod]}
+      {:waffle_gcs, "~> 0.1", only: [:prod]},
+      {:tesla, "~> 1.4"},
+      {:hackney, "~> 1.17"}
     ]
   end
 
