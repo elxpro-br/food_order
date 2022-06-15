@@ -13,7 +13,7 @@ defmodule FoodOrder.Orders.Data.Order do
   @status_values ~w/NOT_STARTED RECEIVED PREPARING DELIVERING DELIVERED/a
   @field ~w/status latitude longitude/a
   @required_field ~w/total_price total_quantity user_id address phone_number/a
-  @derive {Jason.Encoder, only: @field ++ @required_field}
+  @derive {Jason.Encoder, only: @field ++ @required_field ++ [:user]}
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "orders" do

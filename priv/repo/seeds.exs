@@ -1,5 +1,6 @@
 alias FoodOrder.Accounts
 alias FoodOrder.Products
+import FoodOrder.Factory
 
 Accounts.register_user(%{
   email: "adm@elxpro.com",
@@ -7,7 +8,7 @@ Accounts.register_user(%{
   role: "ADMIN"
 })
 
-Accounts.register_user(%{
+user = Accounts.register_user(%{
   email: "user@elxpro.com",
   password: "user@elxpro.coM1",
   role: "USER"
@@ -29,3 +30,8 @@ Enum.each(1..200, fn _ ->
   }
   |> Products.create_product()
 end)
+
+insert(:order)
+insert(:order)
+insert(:order)
+insert(:order)

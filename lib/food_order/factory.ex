@@ -4,6 +4,7 @@ defmodule FoodOrder.Factory do
   alias FoodOrder.Orders.Data.Order
   alias FoodOrder.Products.Product
   alias FoodOrder.Repo
+  alias FoodOrder.Orders.Services.GetLatLng
   @size ~w/small medium large/s
 
   def product_factory do
@@ -32,11 +33,15 @@ defmodule FoodOrder.Factory do
     product_2 = insert(:product)
 
     total_price = product_1.price |> Money.add(product_1.price) |> Money.add(product_2.price)
+    address = Faker.Address.PtBr.street_address()
+    %{latitude: latitude, longitude: longitude} = GetLatLng.execute(address)
 
     %Order{
       user_id: user.id,
-      address: Faker.Address.PtBr.street_address(),
+      address: address,
       phone_number: Faker.Phone.PtBr.phone(),
+      latitude: latitude,
+      longitude: longitude,
       items: [
         %{
           quantity: 2,
