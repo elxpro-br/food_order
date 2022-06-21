@@ -15,6 +15,8 @@ defmodule FoodOrder.Orders.Data.Order do
     field :phone_number, :string
     field :total_price, Money.Ecto.Amount.Type
     field :status, Ecto.Enum, values: @status_values, default: :NOT_STARTED
+    field :lat, :float
+    field :lng, :float
 
     belongs_to :user, User
     has_many :items, Item
