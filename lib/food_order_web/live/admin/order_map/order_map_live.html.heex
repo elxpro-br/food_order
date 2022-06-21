@@ -1,0 +1,17 @@
+<div class="map-content flex w-full">
+
+    <ul class="w-1/4 h-fit bg-zinc-400">
+        <%= for order <- @orders do %>
+        <li id={order.id}>
+            <button phx-click="select-order"
+                    phx-value-id={order.id}
+                    class={@selected_order == order.id && "text-blue-600" || "text-blue-200"}>
+                <%= order.id %>
+            </button>
+        </li>
+        <% end %>
+    </ul>
+
+
+    <div id="map" class="w-3/4 bg-zinc-600" phx-hook="OrdersInMap"></div>
+</div>
