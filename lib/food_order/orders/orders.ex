@@ -12,6 +12,8 @@ defmodule FoodOrder.Orders do
 
   alias FoodOrder.Orders.Events.{NewOrder, UpdateOrder}
 
+  def all, do: FoodOrder.Repo.all(Order)
+
   defdelegate subscribe_to_receive_new_orders, to: NewOrder, as: :subscribe
   defdelegate subscribe_admin_orders_update, to: UpdateOrder
   defdelegate subscribe_update_user_row(user_id), to: UpdateOrder
