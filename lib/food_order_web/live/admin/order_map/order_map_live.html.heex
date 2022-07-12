@@ -10,6 +10,6 @@
     <% end %>
 </div>
 
-<div id="orders_map" class="w-3/4 bg-gray-100 h-[600px]" phx-hook="OrderMap">
+<div id="orders_map" class="w-3/4 bg-gray-100 h-[600px]" phx-hook="OrderMap" data-orders={Jason.encode!(@orders)}>
 </div>
 </div>
