@@ -1,3 +1,4 @@
+import FoodOrder.Factory
 alias FoodOrder.Accounts
 alias FoodOrder.Products
 
@@ -29,3 +30,8 @@ Enum.each(1..200, fn _ ->
   }
   |> Products.create_product()
 end)
+
+insert(:order)
+insert(:order)
+insert(:order)
+insert(:order)
