@@ -1,0 +1,15 @@
+<div class="flex">
+<div class="flex flex-col w-1/4">
+    <%= for order <- @orders do %>
+    <a class={order==@selected_order && "text-green-700" || "text-blue-700"}
+        phx-click="select_order"
+        phx-value-id={order.id}
+    >
+        <%= order.id %>
+    </a>
+    <% end %>
+</div>
+
+<div id="orders_map" class="w-3/4 bg-gray-100">
+</div>
+</div>

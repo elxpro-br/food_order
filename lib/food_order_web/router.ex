@@ -88,6 +88,7 @@ defmodule FoodOrderWeb.Router do
     live_session :is_admin, on_mount: {LiveSessions.Permissions, :admin} do
       scope "/admin", Admin, as: :admin do
         live "/orders", OrderLive, :index
+        live "/orders_map", OrderMapLive, :index
         live "/products", ProductLive, :index
         live "/products/new", ProductLive, :new
         live "/products/:id/edit", ProductLive, :edit
