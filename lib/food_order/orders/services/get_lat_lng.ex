@@ -18,7 +18,9 @@ defmodule FoodOrder.Orders.Services.GetLatLng do
     |> result
   end
 
-  defp result({:error, _}), do: "Error to call api"
+  defp result({:error, _}), do: %{latitude: -22.734297, longitude: -47.334784}
+
+  defp result({:ok, %{body: %{"error" => _}}}), do: %{latitude: -22.734297, longitude: -47.334784}
 
   defp result({:ok, %{body: %{"data" => [first_address | _]}}}) do
     %{latitude: first_address["latitude"], longitude: first_address["longitude"]}
