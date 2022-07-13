@@ -39,6 +39,10 @@ section.hero{
   background: var(--third);
 }
 
+#orders_map{
+  @apply w-3/4 bg-gray-100 h-[600px]
+}
+
 .size{
   background: var(--third);
 }

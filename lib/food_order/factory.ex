@@ -28,6 +28,16 @@ defmodule FoodOrder.Factory do
         |> Repo.insert!()
       end
 
+    locations = [
+      %{latitude: -22.74470633413637, longitude: -47.34198859499476},
+      %{latitude: -22.7315657718667, longitude: -47.3310022672889},
+      %{latitude: -22.746131138472663, longitude: -47.36842444603697},
+      %{latitude: -22.746131138472663, longitude: -47.36842444603697},
+      %{latitude: -22.734297, longitude: -47.334784}
+    ]
+
+    location = locations |> Enum.shuffle() |> hd
+
     product_1 = insert(:product)
     product_2 = insert(:product)
 
@@ -37,6 +47,8 @@ defmodule FoodOrder.Factory do
       user_id: user.id,
       address: Faker.Address.PtBr.street_address(),
       phone_number: Faker.Phone.PtBr.phone(),
+      latitude: location.latitude,
+      longitude: location.longitude,
       items: [
         %{
           quantity: 2,

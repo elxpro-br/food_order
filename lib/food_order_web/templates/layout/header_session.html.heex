@@ -14,6 +14,9 @@
             <li class="ml-6">
                 <%= link "Admin Orders", to: Routes.admin_order_path(@socket, :index) %>
             </li>
+            <li class="ml-6">
+                <%= link "Orders Map", to: Routes.admin_order_map_path(@socket, :index) %>
+            </li>
             <% end %>
             <%= if @current_user.role == :USER do %>
             <li class="ml-6">
