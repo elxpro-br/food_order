@@ -20,7 +20,6 @@ class OrderLeaflet {
     }
 
     addMarker(order) {
-        console.log(order)
         const marker = L.marker([order.latitude, order.longitude], {
                 orderId: order.id
             })
@@ -40,7 +39,6 @@ class OrderLeaflet {
 
         marker.on("click", e => {
             marker.openPopup();
-            console.log(e)
             this.markerClickedCallback(e)
         });
 
