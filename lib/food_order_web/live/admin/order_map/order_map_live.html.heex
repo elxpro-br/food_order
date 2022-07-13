@@ -8,7 +8,8 @@
     </div>
 
     <div id="wrapper" phx-update="ignore" class="w-3/4 bg-gray-100 h-[600px]">
-        <div id="orders_map" phx-hook="OrderMap" data-orders={Jason.encode!(@orders)}>
+        <div id="orders_map" phx-hook="OrderMap">
+        <%# <div id="orders_map" phx-hook="OrderMap" data-orders={Jason.encode!(@orders)}> %>
         </div>
     </div>
 </div>

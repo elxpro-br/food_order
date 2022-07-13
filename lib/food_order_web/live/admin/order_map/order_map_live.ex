@@ -20,11 +20,17 @@ defmodule FoodOrderWeb.Admin.OrderMapLive do
 
   def handle_event("marker-clicked", %{"orderId" => order_id}, socket) do
     selected_order = select_order(socket.assigns.orders, order_id)
-    {:noreply, assign(socket, selected_order: selected_order)}
+    {:reply, %{order: selected_order}, assign(socket, selected_order: selected_order)}
+  end
+
+  def handle_event("get-orders", _, socket) do
+    orders = socket.assigns.orders
+    {:reply, %{orders: orders}, socket}
   end
 
   def handle_info({:new_order, order}, socket) do
-    IO.inspect order
+    IO.inspect(order)
+
     socket =
       socket
       |> update(:orders, &[order | &1])
