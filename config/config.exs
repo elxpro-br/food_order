@@ -50,6 +50,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :tesla, adapter: Tesla.Adapter.Hackney
+
+config :food_order, position_stack_key: System.get_env("POSITION_STACK_KEY")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
