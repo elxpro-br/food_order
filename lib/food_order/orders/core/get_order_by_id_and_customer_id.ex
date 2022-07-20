@@ -7,5 +7,6 @@ defmodule FoodOrder.Orders.Core.GetOrderByIdAndCustomerId do
     Order
     |> where([o], o.id == ^order_id and o.user_id == ^customer_id)
     |> Repo.one()
+    |> Repo.preload(:user)
   end
 end

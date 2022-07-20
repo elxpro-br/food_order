@@ -45,6 +45,25 @@ class OrderLeaflet {
         return marker;
     }
 
+    addDriverMarker(driver) {
+        const marker = L.marker([driver.latitude, driver.longitude], {
+            driver: driver.id
+            })
+            .addTo(this.map)
+            .bindPopup(
+                `
+                    <h3>${driver.name}</h3>
+                `
+            )
+
+        marker.on("click", e => {
+            marker.openPopup();
+            this.markerClickedCallback(e)
+        });
+
+        return marker;
+    }
+
     highlightMarker(order) {
         const marker = this.markerForOrder(order);
         marker.openPopup()

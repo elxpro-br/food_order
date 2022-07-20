@@ -26,6 +26,11 @@ defmodule FoodOrderWeb.Customer.OrderLive.Status do
     {:noreply, socket}
   end
 
+  def handle_event("watch_app", params, socket) do
+    IO.inspect params
+    {:noreply, socket}
+  end
+
   defp get_current_status(current_status) do
     Orders.get_status_list()
     |> Enum.find(fn {status, _index} -> status == current_status end)
