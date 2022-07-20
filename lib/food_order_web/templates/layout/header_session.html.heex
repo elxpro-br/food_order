@@ -9,6 +9,9 @@
             <%= if @current_user do %>
             <%= if @current_user.role == :ADMIN do %>
             <li class="ml-6">
+                <%= link "Map Orders", to: Routes.admin_order_map_path(@socket, :index) %>
+            </li>
+            <li class="ml-6">
                 <%= link "Admin Products", to: Routes.admin_product_path(@socket, :index) %>
             </li>
             <li class="ml-6">
