@@ -7,6 +7,7 @@ defmodule FoodOrder.Orders.Data.Order do
   @status_values ~w/NOT_STARTED RECEIVED PREPARING DELIVERING DELIVERED/a
   @field ~w/status lat lng/a
   @required_field ~w/total_price total_quantity user_id address phone_number/a
+  @derive {Jason.Encoder, only: @field ++ @required_field ++ [:user]}
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "orders" do
@@ -31,5 +32,11 @@ defmodule FoodOrder.Orders.Data.Order do
     |> validate_required(@required_field)
     |> validate_number(:total_quantity, greater_than: 0)
     |> cast_assoc(:items, with: &Item.changeset/2)
+  end
+
+  defimpl Jason.Encoder, for: Money do
+    def encode(value, opts) do
+      Jason.Encode.string(Money.to_string(value), opts)
+    end
   end
 end
