@@ -2,6 +2,7 @@ defmodule FoodOrder.Orders.Core.CreateOrderByCart do
   alias FoodOrder.Carts
   alias FoodOrder.Orders.Data.Order
   alias FoodOrder.Orders.Events.NewOrder
+  alias FoodOrder.Orders.Services.GetLatLng
   alias FoodOrder.Repo
 
   def execute(%{"current_user" => current_user} = payload) do
@@ -9,7 +10,10 @@ defmodule FoodOrder.Orders.Core.CreateOrderByCart do
     |> Carts.get()
     |> convert_session_to_payload_item
     |> create_order_payload(payload)
+    |> include_lat_lng()
+    |> then(&Order.changeset(%Order{}, &1))
     |> Repo.insert()
+    |> IO.inspect()
     |> NewOrder.broadcast()
     |> remove_cache()
   end
@@ -20,7 +24,7 @@ defmodule FoodOrder.Orders.Core.CreateOrderByCart do
   end
 
   defp create_order_payload({cart, items}, payload) do
-    changeset = %{
+    %{
       phone_number: payload["phone_number"],
       address: payload["address"],
       user_id: payload["current_user"],
@@ -28,8 +32,11 @@ defmodule FoodOrder.Orders.Core.CreateOrderByCart do
       total_quantity: cart.total_qty,
       total_price: cart.total_price
     }
+  end
 
-    Order.changeset(%Order{}, changeset)
+  defp include_lat_lng(%{address: address} = payload) do
+    lat_lng = GetLatLng.execute(address)
+    Map.merge(payload, lat_lng)
   end
 
   defp remove_cache({:error, _} = err), do: err

@@ -1,6 +1,6 @@
 defmodule FoodOrder.Orders.Services.GetLatLng do
   @client [
-    {Tesla.Middleware.BaseUrl, "http://api.positionstack.com/v1/forward"},
+    {Tesla.Middleware.BaseUrl, "http://api.positionstack.com/v1"},
     Tesla.Middleware.JSON
   ]
 
@@ -12,7 +12,7 @@ defmodule FoodOrder.Orders.Services.GetLatLng do
 
     @client
     |> Tesla.client()
-    |> Tesla.get("/", query: query)
+    |> Tesla.get("/forward", query: query)
     |> result
   end
 
